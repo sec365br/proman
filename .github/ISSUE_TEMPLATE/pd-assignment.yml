@@ -1,6 +1,6 @@
 name: Atividade SEC365
 description: Atribua o trabalho
-title: "[AT] <título>"
+title: "[AT] "
 labels: ["Atividade", "🎯 Prioridade Média", "⏱️ Tamanho Estimado"]
 body:
   - type: markdown
