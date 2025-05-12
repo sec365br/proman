@@ -1,59 +1,60 @@
-name: PD Coursework
-description: Assign a piece of PD coursework
-title: "[PD] <title>"
-labels: [PD, 🏝 Priority Stretch, 🐇 Size Small]
+name: Atividade
+description: Atribua o trabalho
+title: "[AT] <título>"
+labels: ["Atividade", "🎯 Prioridade Média", "⏱️ Tamanho Estimado"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to assign this coursework!
+        Obrigado por reservar um tempo para atribuir este trabalho!
   - type: input
     attributes:
-      label: Link to the coursework
+      label: Link da tarefa
+      description: Informe o link relacionado a esta atividade.
     validations:
       required: true
   - type: input
     attributes:
-      label: Estimated time in hours (PD has max 4 per week total)
+      label: Tempo estimado em horas
+      description: Quantas horas o participante deverá investir?
     validations:
       required: true
   - type: textarea
     attributes:
-      label: What is the purpose of this assignment?
-      description: Clearly explain the purpose of this assignment and how trainees can evaluate this.
+      label: Qual é o objetivo desta tarefa?
+      description: Explique claramente o propósito da atividade e os critérios de avaliação.
     validations:
       required: true
   - type: textarea
     attributes:
-      label: How to submit
-      description: State in clear steps how a trainee can submit this assignment.
+      label: Como enviar
+      description: Indique os passos necessários para submissão da tarefa.
       placeholder: |
-        Copy the Google doc to your own Google Drive
-        Complete the work assigned
-        When you are ready, move your document to your class Drive
+        1. Acesse o link da atividade
+        2. Realize as etapas propostas
+        3. Envie o resultado conforme indicado
     validations:
       required: true
   - type: textarea
     attributes:
-      label: Anything else?
+      label: Outras informações
       description: |
-        Links? References? Anything that will give more context
-
-        Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
-  - type: markdown
+        Links, referências ou qualquer material complementar que ajude a contextualizar a tarefa.
+        Dica: Você pode anexar imagens ou arquivos arrastando-os para esta área.
   - type: markdown
     attributes:
       value: |
-        **Thank you so much.**
+        **Muito obrigado.**
+
         Agora, por favor, conclua este ticket preenchendo as opções na barra lateral:
-	1. Atualize os rótulos (labels)
-	- Prioridade – este item é essencial, obrigatório ou opcional?
-	- Tamanho – ajude os participantes a planejarem seu tempo com uma estimativa aproximada
-      	
-       2. Adicione a um marco (milestone)
-      	- Semana 1, 2, 3 ou 4
-	
- 	3. Adicione ao backlog do projeto
-	- adicione ao projeto com o mesmo nome deste repositório
-	- preencha os campos personalizados – prioridade, tamanho, horas – conforme esta issue
-        -> Depois que o ticket estiver completo, você pode visualizá-lo no quadro de projeto de exemplo vinculado a este repositório. Isso ajudará você a entender como os participantes utilizarão seu trabalho.
+
+        1. Atualize os rótulos (labels)
+        - Prioridade – este item é essencial, obrigatório ou opcional?
+        - Tamanho – ajude os participantes a estimar o esforço necessário
+
+        2. Adicione a um marco (milestone)
+        - Semana 1, 2, 3 ou 4
+
+        3. Adicione ao backlog do projeto
+        - Relacione ao projeto com o mesmo nome deste repositório
+        - Preencha os campos personalizados – prioridade, tamanho, horas – de acordo com esta issue
