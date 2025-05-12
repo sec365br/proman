@@ -1,14 +1,14 @@
 blank_issues_enabled: false
 contact_links:
   - name: Atividade 
-    url: mailto:suporte@sec365.com.br
+    #url: mailto:suporte@sec365.com.br
     about: Não deixe expirar o prazo deste atiendimento.
   - name: Cliente
-    url: mailto:suporte@sec365.com.br
+    #url: mailto:suporte@sec365.com.br
     about: Informe o cliente e realize a atividade
   - name: Urgente
-    url: https://sec365.com.br
+    #url: https://sec365.com.br
     about: Prioridade ZERO #Trata-se de um chamado Urgente!
   - name: Solicitar reunião
-    url: https://sec365.com.br
+    #url: https://sec365.com.br
     about: Agendar reunião
