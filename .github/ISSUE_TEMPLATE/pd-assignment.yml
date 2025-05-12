@@ -7,22 +7,22 @@ body:
     attributes:
       value: |
         Obrigado por reservar um tempo para atribuir este trabalho!
-  - type: input
+  - type: textarea
     attributes:
-      label: Link da tarefa (opcional)
-      description: Informe o link relacionado a esta atividade.
+      label: Qual é o objetivo desta tarefa?
+      description: Explique claramente o propósito da atividade e os critérios de avaliação.
     validations:
       required: true
-  - type: input
+    - type: input
     attributes:
       label: Tempo estimado em horas
       description: Quantas horas o participante deverá investir?
     validations:
       required: true
-  - type: textarea
+  - type: input
     attributes:
-      label: Qual é o objetivo desta tarefa?
-      description: Explique claramente o propósito da atividade e os critérios de avaliação.
+      label: Link da tarefa (opcional)
+      description: Informe o link relacionado a esta atividade.
     validations:
       required: true
   - type: textarea
@@ -34,7 +34,7 @@ body:
         2. Realize as etapas propostas
         3. Envie o resultado conforme indicado
     validations:
-      required: true
+      required: false
   - type: textarea
     attributes:
       label: Outras informações
