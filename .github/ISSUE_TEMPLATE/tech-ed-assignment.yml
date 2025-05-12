@@ -18,25 +18,25 @@ body:
         - como obter revisão de mentores e colegas
   - type: input
     attributes:
-      label: Link da atividade
+      label: "Link da atividade"
       description: Informe o link relacionado a esta atividade técnica.
     validations:
       required: true
   - type: textarea
     attributes:
-      label: Por que estamos fazendo isso?
+      label: "Por que estamos fazendo isso?"
       description: Explique claramente o propósito pedagógico desta atividade.
     validations:
       required: true
   - type: input
     attributes:
-      label: Tempo máximo estimado (em horas)
+      label: "Tempo máximo estimado (em horas)"
       description: Máximo recomendado: 16 horas por semana.
     validations:
       required: true
   - type: textarea
     attributes:
-      label: Como pedir ajuda
+      label: "Como pedir ajuda"
       description: Explique como os participantes podem obter ajuda durante a atividade.
       placeholder: |
         Compartilhe suas dúvidas no canal da turma
@@ -45,7 +45,7 @@ body:
       required: false
   - type: textarea
     attributes:
-      label: Como enviar
+      label: "Como enviar"
       description: Explique em etapas como deve ser feita a entrega da atividade.
       placeholder: |
         Faça fork do repositório no seu GitHub
@@ -56,13 +56,13 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: Como revisar
+      label: "Como revisar"
       description: Informe como revisar o próprio código e como receber feedback de colegas ou mentores.
     validations:
       required: false
   - type: textarea
     attributes:
-      label: Outras informações
+      label: "Outras informações"
       description: |
         Possui links, referências ou outros materiais que ajudem a entender melhor o contexto?
         Dica: você pode anexar imagens ou arquivos arrastando-os para esta área.
