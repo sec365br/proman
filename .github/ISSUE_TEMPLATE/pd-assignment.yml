@@ -9,7 +9,7 @@ body:
         Obrigado por reservar um tempo para atribuir este trabalho!
   - type: input
     attributes:
-      label: Link da tarefa
+      label: Link da tarefa (opcional)
       description: Informe o link relacionado a esta atividade.
     validations:
       required: true
