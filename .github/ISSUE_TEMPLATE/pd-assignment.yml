@@ -1,7 +1,7 @@
 name: Atividade
 description: Atribua o trabalho
-title: "[AT] - "
-labels: ["Atividade"]
+title: "[AT] <título>"
+labels: ["Atividade", "🎯 Prioridade Média", "⏱️ Tamanho Estimado"]
 body:
   - type: markdown
     attributes:
@@ -13,7 +13,7 @@ body:
       description: Explique claramente o propósito da atividade e os critérios de avaliação.
     validations:
       required: true
-    - type: input
+  - type: input
     attributes:
       label: Tempo estimado em horas
       description: Quantas horas o participante deverá investir?
@@ -21,10 +21,10 @@ body:
       required: true
   - type: input
     attributes:
-      label: Link da tarefa (opcional)
+      label: Link da tarefa
       description: Informe o link relacionado a esta atividade.
     validations:
-      required: true
+      required: false
   - type: textarea
     attributes:
       label: Como enviar
@@ -41,6 +41,8 @@ body:
       description: |
         Links, referências ou qualquer material complementar que ajude a contextualizar a tarefa.
         Dica: Você pode anexar imagens ou arquivos arrastando-os para esta área.
+    validations:
+      required: false
   - type: markdown
     attributes:
       value: |
