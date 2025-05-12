@@ -1,7 +1,7 @@
-name: Tech Ed Coursework
+name: Atividade Extra
 description: Atribua uma atividade técnica
-title: "[TECH ED] <title>"
-labels: [Tech Ed, "🏕 Priority Mandatory", "🐂 Size Medium"]
+title: "[AE]"
+labels: [Prioridade, "Mandatoria", " Urgente"]
 body:
   - type: markdown
     attributes:
