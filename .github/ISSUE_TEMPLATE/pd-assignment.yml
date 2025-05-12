@@ -1,7 +1,7 @@
 name: Atividade
 description: Atribua o Trabalho
 title: "[AT]- "
-labels: [Prioridade: ]
+labels: ["Prioridade: "]
 body:
   - type: markdown
     attributes:
