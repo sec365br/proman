@@ -44,12 +44,14 @@ body:
       value: |
         **Thank you so much.**
         Agora, por favor, conclua este ticket preenchendo as opções na barra lateral:
-	      1.	Atualize os rótulos (labels)
-	      •	prioridade – este item é essencial, obrigatório ou opcional?
-	      •	tamanho – ajude os participantes a planejarem seu tempo com uma estimativa aproximada
-      	2.	Adicione a um marco (milestone)
-      	•	semana 1, 2, 3 ou 4
-	      3.	Adicione ao backlog do projeto
-	      •	adicione ao projeto com o mesmo nome deste repositório
-	      •	preencha os campos personalizados – prioridade, tamanho, horas – conforme esta issue
+	1. Atualize os rótulos (labels)
+	- Prioridade – este item é essencial, obrigatório ou opcional?
+	- Tamanho – ajude os participantes a planejarem seu tempo com uma estimativa aproximada
+      	
+       2. Adicione a um marco (milestone)
+      	- Semana 1, 2, 3 ou 4
+	
+ 	3. Adicione ao backlog do projeto
+	- adicione ao projeto com o mesmo nome deste repositório
+	- preencha os campos personalizados – prioridade, tamanho, horas – conforme esta issue
         -> Depois que o ticket estiver completo, você pode visualizá-lo no quadro de projeto de exemplo vinculado a este repositório. Isso ajudará você a entender como os participantes utilizarão seu trabalho.
