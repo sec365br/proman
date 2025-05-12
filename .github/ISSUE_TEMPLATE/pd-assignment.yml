@@ -1,60 +1,55 @@
-name: PD Coursework
-description: Assign a piece of PD coursework
-title: "[PD] <title>"
-labels: [PD, 🏝 Priority Stretch, 🐇 Size Small]
+name: Atividade
+description: Atribua o trabalho
+title: "[AT]- "
+labels: [Prioridade: ]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to assign this coursework!
+        Obrigado por reservar um tempo para atribuir este trabalho!
   - type: input
     attributes:
-      label: Link to the coursework
+      label: Link
     validations:
       required: true
   - type: input
     attributes:
-      label: Estimated time in hours (PD has max 4 per week total)
+      label: Tempo estimado em horas:
     validations:
       required: true
   - type: textarea
     attributes:
-      label: What is the purpose of this assignment?
-      description: Clearly explain the purpose of this assignment and how trainees can evaluate this.
+      label: Qual é o objetivo desta tarefa?
+      description: Explique claramente o propósito desta tarefa e como será avaliado.
     validations:
       required: true
   - type: textarea
     attributes:
-      label: How to submit
-      description: State in clear steps how a trainee can submit this assignment.
+      label: Como enviar
+      description: Explique em etapas claras como pode ser enviada esta tarefa.
       placeholder: |
-        Copy the Google doc to your own Google Drive
-        Complete the work assigned
-        When you are ready, move your document to your class Drive
+        1: 
+        2: 
+        3:
     validations:
       required: true
   - type: textarea
     attributes:
-      label: Anything else?
+      label: Outras Informações:
       description: |
-        Links? References? Anything that will give more context
-
-        Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
+        Possui links, referências ou outros materiais que ajudem a entender melhor o contexto?
+        Você pode anexar imagens, logs ou qualquer outro arquivo relevante clicando nesta área ou arrastando os arquivos diretamente aqui.
   - type: markdown
     attributes:
       value: |
         **Thank you so much.**
-
-        Please now complete this ticket by filling in the options on the sidebar.
-
-        1. Update labels
-        - priority -- is this coursework key, mandatory, or stretch?
-        - size -- help trainees plan their time with rough estimation
-        2. Add to milestone
-        - week 1,2,3,4
-        3. Add to project backlog
-        - add to the project named the same as this repo
-        - fill in custom fields -- priority, size, hours -- to match this issue
-
-        Once your ticket is complete, you may like to check it out on the example project board attached to this repo.
-        This is so you understand how trainees will use your work.
+        Agora, por favor, conclua este ticket preenchendo as opções na barra lateral:
+	      1.	Atualize os rótulos (labels)
+	      •	prioridade – este item é essencial, obrigatório ou opcional?
+	      •	tamanho – ajude os participantes a planejarem seu tempo com uma estimativa aproximada
+      	2.	Adicione a um marco (milestone)
+      	•	semana 1, 2, 3 ou 4
+	      3.	Adicione ao backlog do projeto
+	      •	adicione ao projeto com o mesmo nome deste repositório
+	      •	preencha os campos personalizados – prioridade, tamanho, horas – conforme esta issue
+        -> Depois que o ticket estiver completo, você pode visualizá-lo no quadro de projeto de exemplo vinculado a este repositório. Isso ajudará você a entender como os participantes utilizarão seu trabalho.
