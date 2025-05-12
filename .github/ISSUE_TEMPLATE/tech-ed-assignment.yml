@@ -18,30 +18,29 @@ body:
         - como obter revisão de mentores e colegas
   - type: input
     attributes:
-      label: Link to the coursework
+      label: Link da atividade
     validations:
-      required: true
+      required: false
   - type: textarea
     attributes:
-      label: Why are we doing this?
+      label: Qual o proposito desta atividade?
       description: Explique claramente o propósito desta atividade
     validations:
       required: true
   - type: input
     attributes:
-      label: "Maximum time in hours (Tech has max 16 per week total)"
+      label: "Tempo máximo em horas"
     validations:
       required: true
   - type: textarea
     attributes:
-      label: How to get help
+      label: Como obter ajuda
       description: Indique de forma simples como o participante pode obter ajuda
       placeholder: |
-        Compartilhe suas dificuldades no canal da turma
-        https://syllabus.codeyourfuture.io/guides/asking-questions
+        Compartilhe suas dificuldades no canal da sua equipe!
   - type: textarea
     attributes:
-      label: How to submit
+      label: Como enviar?
       description: Explique em etapas como enviar esta atividade
       placeholder: |
         Faça fork do repositório para sua conta do GitHub
@@ -52,7 +51,7 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: How to review
+      label: Como revisar?
       description: Como revisar o código e realizar autoavaliação
   - type: textarea
     attributes:
