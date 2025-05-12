@@ -1,7 +1,7 @@
 name: Atividade
 description: Atribua o trabalho
-title: "[AT] <título>"
-labels: ["Atividade", "🎯 Prioridade Média", "⏱️ Tamanho Estimado"]
+title: "[AT] - "
+labels: ["Atividade"]
 body:
   - type: markdown
     attributes:
