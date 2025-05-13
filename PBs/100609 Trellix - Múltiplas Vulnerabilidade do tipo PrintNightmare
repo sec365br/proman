@@ -1,0 +1,61 @@
+ANÁLISE DE INCIDENTE DE SEGURANÇA
+DESCRIÇÃO:
+O incidente detectado está relacionado a múltiplas vulnerabilidades conhecidas associadas ao tipo PrintNightmare, que são exploradas via comunicação de tráfego DNS, com as vulnerabilidades de segurança permitindo que os atacantes ganhem acesso remoto a sistemas afetados. A técnica observada no MITRE ATT&CK® é caracterizada por Exploração de Vulnerabilidades em serviços amplamente utilizados, como o protocolo DNS. O impacto potencial desse incidente pode incluir a execução remota de código malicioso, comprometimento da rede e exfiltração de dados sensíveis. Os atacantes provavelmente visavam sistemas com configurações de segurança inadequadas, aproveitando-se de falhas já conhecidas em aplicativos de rede e servidores DNS. A utilização do protocolo UDP na comunicação e a frequência das tentativas indicam um ataque automatizado, com o objetivo de criar persistência ou explorar os sistemas vulneráveis.
+
+DETALHAMENTO:
+[01] - ID da regra: {rule:id} 
+[02] - Porta de Destino: {data:destination_port} 
+[03] - Protocolo: {data:protocol} 
+[04] - Ação: {data:action} 
+[05] - Categoria: {data:category} 
+[06] - Aviso por e-mail: {rule:mail} 
+[07] - Grupo: {rule:groups} 
+[08] - Id do Agente: {agent:id} 
+[09] - Nome do Agente: {agent:name} 
+[10] - Hostname Primário: {predecoder:hostname} 
+[11] - IP Origem: {data:source_address}
+[12] - IP Destino :{data:destination_address} 
+[13] - Ip do NAT Origem: {data:nat_source_ip}
+[14] - Ip do NAT destino: {data:nat_destination_ip} 
+[15] - Regra do FW: {data:rule_name} 
+[16] - Aplicação: {data:application} 
+[17] - Zona de Origem: {data:source_zone} 
+[18] - Zona de Destino do Data: {data:destination_zone} 
+[19] - Trilha: {data:log_action} 
+[20] - País/IP de Origem: {data:source_country} 
+[21] - País/IP de Destino: {data:destination_country} 
+[22] - Motivo de finalização de sessão: {data:session_end_reason}  
+[23] - nome sistema virtual: {data:virtual_system_name} 
+[24] - origem acao: {data:action_source}  
+[25] - Tipo túnel: {data:tunnel_type}  
+[26] - Aplicacao (Categoria): {data:application_category} 
+[27] - Aplicacao (Subcategoria): {data:application_subcategory}   
+[28] - Aplicação (Tecnologia): {data:application_technology}  
+[29] - Má Reputação de IP Origem (Indicador): {abuseipdb:found} 
+[30] - Má Reputação de IP Origem (Nível): {abuseipdb:abuse_confidence_score} 
+[31] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain} 
+[32] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:total_reports}  
+[33] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:last_reported_at}  
+[34] - Tipo de IP Origem: {abuseipdb:usage_type} 
+[35] - ISP de Origem: {abuseipdb:isp} 
+[36] - Código de País do IP Origem: {abuseipdb:country_code}
+
+ETAPAS DO ATAQUE:
+
+Aplicar patches de segurança para corrigir as vulnerabilidades conhecidas associadas ao PrintNightmare, evitando exploração por parte de atacantes.
+Reforçar regras de firewall para bloquear tráfego DNS suspeito, especialmente para destinos não autorizados ou desconhecidos.
+Implementar monitoramento contínuo da rede para detectar padrões de tráfego anômalos, como tentativas de exploração de vulnerabilidades.
+Limitar o uso de serviços vulneráveis em sistemas críticos, desabilitando funcionalidades desnecessárias relacionadas a serviços como DNS.
+Auditar regularmente os sistemas para garantir que configurações de segurança e permissões estejam corretas, protegendo contra acessos não autorizados.
+MITIGAÇÃO:
+Atualizar sistemas e softwares vulneráveis com os patches mais recentes, priorizando serviços expostos ao público, como servidores DNS.
+Utilizar ferramentas de detecção de intrusão para identificar tráfego malicioso em tempo real, bloqueando ataques conhecidos como PrintNightmare.
+Aplicar segmentação de rede para isolar sistemas críticos, limitando a propagação de ataques em caso de exploração bem-sucedida.
+Reforçar controles de acesso baseados em IPs e zonas de rede, restringindo o acesso a serviços DNS apenas para dispositivos autorizados.
+Estabelecer um processo de resposta a incidentes para lidar rapidamente com ataques detectados, minimizando danos e restaurando a operação normal.
+CONTENÇÃO:
+Bloquear a comunicação com IPs suspeitos, especialmente durante tentativas de exploração como o uso indevido de DNS sobre UDP.
+Isolar rapidamente sistemas afetados pela exploração, removendo-os da rede para evitar a disseminação de malware e reduzir o impacto.
+Desabilitar temporariamente os serviços vulneráveis, como DNS ou outros protocolos associados, até que uma solução definitiva seja aplicada.
+CONCLUSÃO:
+O incidente envolveu múltiplas tentativas de exploração de vulnerabilidades do tipo PrintNightmare, usando tráfego DNS. Os atacantes tinham como objetivo comprometer sistemas vulneráveis para controle remoto. A contenção rápida e a atualização de sistemas são fundamentais para prevenir novos ataques.
