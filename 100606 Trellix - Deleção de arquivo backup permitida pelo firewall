@@ -1,0 +1,62 @@
+IDENTIFICAÇÃO:
+O incidente relatado envolve a deleção de um arquivo de backup, permitindo a exclusão do arquivo. Um determinado usuário executou um determinado processo, o qual acessou o arquivo de log e solicitou sua exclusão. Uma determinada regra foi violada, o que pode indicar uma tentativa de apagar evidências de atividades maliciosas, como o uso indevido do sistema. Este tipo de ataque se relaciona à técnica de Evasão de Detecção do MITRE ATT&CK®, visando limpar registros críticos de logs para encobrir rastros de ações prejudiciais. O impacto do incidente pode envolver a ocultação de ações de intrusos ou a modificação não autorizada de dados sensíveis, o que compromete a integridade dos logs e dificulta a resposta a incidentes futuros.
+
+ETAPAS DO ATAQUE:
+1. Impedir a exclusão não autorizada de logs configurando o firewall e políticas de segurança para bloquear acessos a arquivos de log críticos.
+2. Monitorar constantemente a integridade dos arquivos de log, criando cópias de segurança e utilizando soluções para detectar alterações suspeitas.
+3. Reforçar o controle de permissões e auditorias de acessos aos arquivos de log, limitando apenas a usuários administrativos confiáveis.
+4. Implementar sistemas de detecção de intrusão (IDS) para monitorar e alertar sobre atividades suspeitas, como a exclusão de logs do sistema.
+5. Treinar usuários e administradores sobre a importância dos logs e como proteger dados sensíveis, além de garantir que atividades de manutenção sejam seguidas corretamente.
+
+AVALIAÇÃO
+[01] - ID da regra: {rule:id} 
+[02] - Porta de Destino: {data:destination_port} 
+[03] - Protocolo: {data:protocol} 
+[04] - Ação: {data:action} 
+[05] - Categoria: {data:category} 
+[06] - Aviso por e-mail: {rule:mail} 
+[07] - Grupo: {rule:groups} 
+[08] - Id do Agente: {agent:id} 
+[09] - Nome do Agente: {agent:name} 
+[10] - Hostname Primário: {predecoder:hostname} 
+[11] - IP Origem: {data:source_address}
+[12] - IP Destino :{data:destination_address} 
+[13] - Ip do NAT Origem: {data:nat_source_ip}
+[14] - Ip do NAT destino: {data:nat_destination_ip} 
+[15] - Regra do FW: {data:rule_name} 
+[16] - Aplicação: {data:application} 
+[17] - Zona de Origem: {data:source_zone} 
+[18] - Zona de Destino do Data: {data:destination_zone} 
+[19] - Trilha: {data:log_action} 
+[20] - País/IP de Origem: {data:source_country} 
+[21] - País/IP de Destino: {data:destination_country} 
+[22] - Motivo de finalização de sessão: {data:session_end_reason}  
+[23] - nome sistema virtual: {data:virtual_system_name} 
+[24] - origem acao: {data:action_source}  
+[25] - Tipo túnel: {data:tunnel_type}  
+[26] - Aplicacao (Categoria): {data:application_category} 
+[27] - Aplicacao (Subcategoria): {data:application_subcategory}   
+[28] - Aplicação (Tecnologia): {data:application_technology}  
+[29] - Má Reputação de IP Origem (Indicador): {abuseipdb:found} 
+[30] - Má Reputação de IP Origem (Nível): {abuseipdb:abuse_confidence_score} 
+[31] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain} 
+[32] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:total_reports}  
+[33] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:last_reported_at}  
+[34] - Tipo de IP Origem: {abuseipdb:usage_type} 
+[35] - ISP de Origem: {abuseipdb:isp} 
+[36] - Código de País do IP Origem: {abuseipdb:country_code}
+
+MITIGAÇÃO
+1. Restringir permissões de acesso aos arquivos de log para impedir que usuários não autorizados possam realizar alterações nos logs do sistema.
+2. Ativar mecanismos de auditoria de arquivos de log para monitorar mudanças, como exclusões ou modificações, permitindo detectar ações anômalas em tempo real.
+3. Fortalecer a segurança da infraestrutura de TI por meio de firewalls, IDS/IPS, e criptografia de arquivos críticos para aumentar a proteção dos dados sensíveis.
+4. Estabelecer um plano de recuperação de desastres para restaurar logs de backup em caso de exclusões indevidas ou maliciosas, preservando a integridade do sistema.
+5. Revisar configurações de firewall e políticas de segurança para garantir que atividades de exclusão ou modificação de logs sejam bloqueadas ou notificadas.
+
+CONTENÇÃO
+1. Isolar o sistema comprometido e bloquear qualquer acesso não autorizado para evitar a propagação do ataque e novas exclusões de dados.
+2. Restaurar imediatamente os logs a partir de backups seguros para garantir a integridade das evidências e permitir a investigação do incidente.
+3. Revisar e ajustar as permissões de usuário para evitar que o mesmo ataque ocorra novamente em sistemas críticos, minimizando os riscos futuros.
+
+CONCLUSÃO
+O incidente foi causado pela exclusão de arquivos de log, uma prática comum em tentativas de ocultação de atividades maliciosas. A falta de regras adequadas de bloqueio no firewall permitiu essa ação. A contenção rápida e a revisão das permissões são essenciais para impedir futuras ocorrências.
