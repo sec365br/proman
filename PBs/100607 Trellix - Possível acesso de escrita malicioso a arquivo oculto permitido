@@ -1,0 +1,62 @@
+IDENTIFICAÇÃO
+O incidente detectado foi relacionado a um possível acesso de escrita malicioso a arquivo oculto, com determinado usuário executando determinado processo, que acessou arquivo oculto. Esse tipo de atividade viola determinada regra, indicativa de uma técnica de persistência no sistema. A intenção do atacante pode ser manter o acesso ao sistema ou esconder atividades maliciosas. O impacto do incidente pode incluir a criação de arquivos ocultos que comprometem a integridade do sistema, além de expor informações sensíveis ao atacante. O incidente foi permitido devido à configuração inadequada da regra de bloqueio.
+
+ETAPAS DO ATAQUE
+Reforçar a configuração de regras de segurança para que ações como a criação de arquivos ocultos sejam bloqueadas automaticamente, evitando escrita não autorizada.
+Monitorar e auditar a criação de arquivos e processos em diretórios ocultos para detectar e prevenir comportamentos anômalos ou maliciosos.
+Fortalecer o controle de acesso aos sistemas, limitando permissões e usando autenticação multifatorial para dificultar acessos não autorizados.
+Implementar soluções de detecção e prevenção de intrusão para identificar atividades suspeitas, como a execução de processos não autorizados.
+Realizar treinamentos contínuos sobre segurança para que os usuários possam reconhecer e evitar práticas de segurança inadequadas e riscos de ataques.
+
+AVALIAÇÃO
+[01] - ID da regra: {rule:id} 
+[02] - Porta de Destino: {data:destination_port} 
+[03] - Protocolo: {data:protocol} 
+[04] - Ação: {data:action} 
+[05] - Categoria: {data:category} 
+[06] - Aviso por e-mail: {rule:mail} 
+[07] - Grupo: {rule:groups} 
+[08] - Id do Agente: {agent:id} 
+[09] - Nome do Agente: {agent:name} 
+[10] - Hostname Primário: {predecoder:hostname} 
+[11] - IP Origem: {data:source_address}
+[12] - IP Destino :{data:destination_address} 
+[13] - Ip do NAT Origem: {data:nat_source_ip}
+[14] - Ip do NAT destino: {data:nat_destination_ip} 
+[15] - Regra do FW: {data:rule_name} 
+[16] - Aplicação: {data:application} 
+[17] - Zona de Origem: {data:source_zone} 
+[18] - Zona de Destino do Data: {data:destination_zone} 
+[19] - Trilha: {data:log_action} 
+[20] - País/IP de Origem: {data:source_country} 
+[21] - País/IP de Destino: {data:destination_country} 
+[22] - Motivo de finalização de sessão: {data:session_end_reason}  
+[23] - nome sistema virtual: {data:virtual_system_name} 
+[24] - origem acao: {data:action_source}  
+[25] - Tipo túnel: {data:tunnel_type}  
+[26] - Aplicacao (Categoria): {data:application_category} 
+[27] - Aplicacao (Subcategoria): {data:application_subcategory}   
+[28] - Aplicação (Tecnologia): {data:application_technology}  
+[29] - Má Reputação de IP Origem (Indicador): {abuseipdb:found} 
+[30] - Má Reputação de IP Origem (Nível): {abuseipdb:abuse_confidence_score} 
+[31] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain} 
+[32] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:total_reports}  
+[33] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:last_reported_at}  
+[34] - Tipo de IP Origem: {abuseipdb:usage_type} 
+[35] - ISP de Origem: {abuseipdb:isp} 
+[36] - Código de País do IP Origem: {abuseipdb:country_code}
+
+MITIGAÇÃO
+Reconfigurar as regras do sistema de segurança para bloquear a criação de arquivos ocultos automaticamente, garantindo que atividades como essa sejam prevenidas.
+Realizar auditorias frequentes de sistemas e arquivos para garantir que não haja arquivos ou processos ocultos no sistema, ajudando a detectar ações maliciosas.
+Aplicar patches e atualizações de segurança para corrigir vulnerabilidades em aplicativos como o cPanel, evitando a exploração de falhas conhecidas.
+Estabelecer uma política de segurança mais rigorosa para gerenciar permissões de usuários e limitar a capacidade de escrita em diretórios críticos.
+Investir em ferramentas de monitoramento e prevenção para detectar qualquer alteração não autorizada e agir rapidamente contra potenciais ameaças.
+
+CONTENÇÃO
+Isolar a máquina comprometida e interromper o processo malicioso imediatamente para evitar a propagação de possíveis impactos ou acessos não autorizados.
+Limitar o acesso ao sistema enquanto a análise for realizada, restringindo operações que permitam escrita em diretórios ocultos.
+Reforçar a segurança das credenciais do usuário afetado, aplicando autenticação multifatorial para prevenir futuros acessos não autorizados.
+
+CONCLUSÃO
+Este incidente foi causado pela execução de um processo malicioso que violou regras de segurança, criando um arquivo oculto e permitindo que um atacante ganhasse acesso ao sistema. A falta de configuração adequada de bloqueio aumentou a vulnerabilidade. Medidas de contenção e mitigação devem ser aplicadas imediatamente para proteger o sistema.
