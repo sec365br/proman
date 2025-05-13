@@ -1,0 +1,72 @@
+{
+    "timestamp": "2024-12-19T14:48:10.007+0000",
+    "rule": {
+        "level": 7,
+        "description": "Trellix - Dele\u00e7\u00e3o de arquivo backup permitida pelo firewall",
+        "id": "100606",
+        "firedtimes": 2,
+        "mail": false,
+        "groups": [
+            "mcafee_epo",
+            "paloalto"
+        ]
+    },
+    "agent": {
+        "id": "000",
+        "name": "poc-coleta-log"
+    },
+    "manager": {
+        "name": "poc-coleta-log"
+    },
+    "id": "1734619690.3585112995",
+    "full_log": "2024-12-19T14:48:08.0Z SRVEPO EPOEvents \ufeff<?xml version=\"1.0\" encoding=\"utf-8\"?><EPOEvent><MachineInfo><AgentGUID>{8348e07e-1e10-11eb-1319-005056acd853}</AgentGUID><MachineName>prodcpanel</MachineName><RawMACAddress>005056ACD853</RawMACAddress><IPAddress>177.74.1.128</IPAddress><AgentVersion>5.7.9.182</AgentVersion><OSName>Linux</OSName><TimeZoneBias>180</TimeZoneBias><UserName></UserName></MachineInfo><SoftwareInfo ProductName=\"ENDP_AM_1070LYNX\" ProductVersion=\"10.7.17.66\" ProductFamily=\"TVD\"><CommonFields><Analyzer>ENDP_AM_1070LYNX</Analyzer><AnalyzerName>Trellix Endpoint Security</AnalyzerName><AnalyzerVersion>10.7.17.66</AnalyzerVersion></CommonFields><Event><EventID>18060</EventID><Severity>0</Severity><GMTTime>2024-12-19T14:35:20</GMTTime><LocalTime>2024-12-19T11:35:20</LocalTime><CommonFields><AnalyzerDetectionMethod>Exploit Prevention</AnalyzerDetectionMethod><DetectedUTC>2024-12-19T14:35:20Z</DetectedUTC><SourceProcessName>/usr/local/cpanel/libexec/cpanellogd</SourceProcessName><SourceUserName>salvaterra</SourceUserName><TargetFileName>/var/log/apache2/domlogs/prefeituradesalvaterra.pa.gov.br-ssl_log.bkup</TargetFileName><TargetUserName>salvaterra</TargetUserName><ThreatActionTaken>IDS_ACTION_WOULD_BLOCK</ThreatActionTaken><ThreatCategory>hip.file</ThreatCategory><ThreatHandled>0</ThreatHandled><ThreatName>T1070.002 - Clearing Linux System Log Files</ThreatName><ThreatSeverity>4</ThreatSeverity><ThreatType>IDS_THREAT_TYPE_VALUE_BOP</ThreatType></CommonFields><CustomFields target=\"EPExtendedEventMT\"><AccessRequested>Delete</AccessRequested><AnalyzerContentCreationDate>2024-11-19T00:00:00Z</AnalyzerContentCreationDate><AnalyzerContentVersion>10.7.0.00356</AnalyzerContentVersion><AnalyzerRuleID>50035</AnalyzerRuleID><AnalyzerRuleName>T1070.002 - Clearing Linux System Log Files</AnalyzerRuleName><AttackVectorType>4</AttackVectorType><BladeName>IDS_BLADE_NAME_SPB</BladeName><NaturalLangDescription>User [salvaterra] ran [/usr/local/cpanel/libexec/cpanellogd], which accessed [/var/log/apache2/domlogs/prefeituradesalvaterra.pa.gov.br-ssl_log.bkup], violating the rule [T1070.002 - Clearing Linux System Log Files] with rule ID [50035]. Access was allowed because the rule wasn't configured to block.</NaturalLangDescription><TargetName>prefeituradesalvaterra.pa.gov.br-ssl_log.bkup</TargetName><TargetPath>/var/log/apache2/domlogs</TargetPath></CustomFields></Event></SoftwareInfo></EPOEvent> #015",
+    "predecoder": {
+        "timestamp": "2024-12-19T14:48:08.0Z SRVEPO E"
+    },
+    "decoder": {
+        "name": "mcafee-epo2"
+    },
+    "data": {
+        "machine_name": "prodcpanel",
+        "agent_guid": "{8348e07e-1e10-11eb-1319-005056acd853}",
+        "ip": {
+            "address": "177.74.1.128"
+        },
+        "os": {
+            "name": "Linux"
+        },
+        "timezone_bias": "180",
+        "mac_address": "005056ACD853",
+        "product_name": "ENDP_AM_1070LYNX",
+        "product_version": "10.7.17.66",
+        "product_family": "TVD",
+        "Analyzer": "ENDP_AM_1070LYNX",
+        "AnalyzerName": "Trellix Endpoint Security",
+        "AnalyzerVersion": "10.7.17.66",
+        "AnalyzerDetectionMethod": "Exploit Prevention",
+        "EventID": "18060",
+        "Severity": "0",
+        "GMTTime": "2024-12-19T14:35:20",
+        "ThreatCategory": "hip.file",
+        "ThreatName": "T1070.002 - Clearing Linux System Log Files",
+        "ThreatType": "IDS_THREAT_TYPE_VALUE_BOP",
+        "DetectedUTC": "2024-12-19T14:35:20Z",
+        "ThreatActionTaken": "IDS_ACTION_WOULD_BLOCK",
+        "ThreatHandled": "0",
+        "SourceUserName": "salvaterra",
+        "SourceProcessName": "/usr/local/cpanel/libexec/cpanellogd",
+        "TargetUserName": "salvaterra",
+        "TargetFileName": "/var/log/apache2/domlogs/prefeituradesalvaterra.pa.gov.br-ssl_log.bkup",
+        "ThreatSeverity": "4",
+        "BladeName": "IDS_BLADE_NAME_SPB",
+        "AnalyzerContentVersion": "10.7.0.00356",
+        "AnalyzerContentCreationDate": "2024-11-19T00:00:00Z",
+        "AnalyzerRuleName": "T1070.002 - Clearing Linux System Log Files",
+        "TargetName": "prefeituradesalvaterra.pa.gov.br-ssl_log.bkup",
+        "TargetPath": "/var/log/apache2/domlogs",
+        "AttackVectorType": "4",
+        "NaturalLangDescription": "User [salvaterra] ran [/usr/local/cpanel/libexec/cpanellogd], which accessed [/var/log/apache2/domlogs/prefeituradesalvaterra.pa.gov.br-ssl_log.bkup], violating the rule [T1070.002 - Clearing Linux System Log Files] with rule ID [50035]. Access was allowed because the rule wasn't configured to block.",
+        "AccessRequested": "Delete"
+    },
+    "location": "/var/log/syslog"
+}
