@@ -11,9 +11,11 @@ Aqui será nosso **hub central de desenvolvimento, gestão de oportunidades e re
 O time de Hunting identifica ameaças avançadas que passam despercebidas por defesas tradicionais. Atua proativamente na detecção de atividades maliciosas ainda não sinalizadas por sistemas automatizados. Também desenvolve e atualiza continuamente playbooks, regras e decoders.  
 
 **Colaboradores:**  
-- 01 -  
-- 02 -  
-- 03 -
+- 01 - Hugo Santos
+- 02 - Lucas Bastos
+- 03 - Matheus Brito
+- 04 - Camilo Santos
+- 05 - Adriel Rodrigues
 
 ---
 
@@ -21,9 +23,9 @@ O time de Hunting identifica ameaças avançadas que passam despercebidas por de
 Responsável por criar e manter soluções seguras, escaláveis e alinhadas às necessidades dos clientes. Utiliza práticas ágeis para garantir entregas rápidas, eficientes e com alta qualidade. Foca na integração entre desenvolvimento, segurança e operações.  
 
 **Colaboradores:**  
-- 01 -  
-- 02 -  
-- 03 -
+- 01 -  Eduardo Ribeiro
+- 02 -  Hugo Silva
+- 03 -  Adriel Rodrigues
 
 ---
 
@@ -31,9 +33,12 @@ Responsável por criar e manter soluções seguras, escaláveis e alinhadas às 
 Coleta, analisa e dissemina informações estratégicas sobre ameaças cibernéticas relevantes. Produz relatórios de inteligência, IoCs e previsões baseadas em tendências globais. Atua para antecipar ataques e fortalecer a postura de defesa dos clientes.  
 
 **Colaboradores:**  
-- 01 -  
-- 02 -  
-- 03 -
+- 01 -  Lucas Pacheco
+- 02 -  Hugo Santos
+- 03 -  Lucas Bastos
+- 04 -  Matheus Brito
+- 05 -  Camilo Santos
+- 06 -  Adriel Rodrigues
 
 ---
 
@@ -41,9 +46,7 @@ Coleta, analisa e dissemina informações estratégicas sobre ameaças cibernét
 Gerencia os chamados e verifica constantemente o cumprimento dos SLAs definidos pela SEC365. Atua na organização, priorização e controle dos atendimentos técnicos e operacionais. Garante fluidez, transparência e rastreabilidade no suporte ao cliente.  
 
 **Colaboradores:**  
-- 01 -  
-- 02 -  
-- 03 -
+- 01 -  Jaqueline Rodrigues
 
 ---
 
@@ -51,9 +54,9 @@ Gerencia os chamados e verifica constantemente o cumprimento dos SLAs definidos 
 Previne, identifica e mitiga ataques de phishing que visam roubo de dados sensíveis. Atua na conscientização, simulação de campanhas maliciosas e resposta a incidentes. Garante proteção contra e-mails e sites fraudulentos direcionados aos usuários.  
 
 **Colaboradores:**  
-- 01 -  
-- 02 -  
-- 03 -
+- 01 -  João Gonçalves
+- 02 -  Wallace Patrick
+- 03 -  Jaqueline Rodrigues
 
 ---
 
@@ -61,9 +64,9 @@ Previne, identifica e mitiga ataques de phishing que visam roubo de dados sensí
 Garante a operação segura e contínua da infraestrutura de tecnologia da empresa. Realiza PoCs, implanta ativos, monitora sistemas e investiga falhas de desempenho. Trabalha para otimizar recursos, aumentar a resiliência e reforçar a segurança operacional.  
 
 **Colaboradores:**  
-- 01 -  
-- 02 -  
-- 03 -
+- 01 -  Kleber Vilhena
+- 02 -  Ricardo Kloppel
+- 03 -  Carlos Henrique
 
 ---
 
