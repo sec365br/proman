@@ -1,0 +1,58 @@
+ANÁLISE DE INCIDENTE DE SEGURANÇA
+
+IDENTIFICAÇÃO: Foi identificado um possível incidente de phishing, caracterizado pela tentativa de acesso a uma URL classificada como maliciosa e que tem potencial para enganar usuários, levando-os a fornecer informações confidenciais ou realizar ações prejudiciais. O ataque consiste em enganar vítimas para que interajam com links fraudulentos, expondo dados sensíveis e comprometendo a segurança da organização. Apesar de não constar diretamente as táticas e técnicas do MITRE ATT&CK® neste JSON, a associação à norma NIST 800-53 (AU.6) indica a importância da auditoria e monitoramento para identificar tais tentativas. Os atacantes provavelmente visam usuários internos ou sistemas que possam ser manipulados para roubo de credenciais, fraude financeira ou instalação de malware, podendo causar impactos severos como perda de dados, violação da privacidade e danos reputacionais.
+
+ETAPAS DO ATAQUE:
+[01] - Realizar monitoramento constante de URLs acessadas para identificar tentativas de phishing antes que o usuário seja afetado.
+[02] - Manter atualizadas as listas de bloqueio e assinaturas de URLs maliciosas para aumentar a eficácia do filtro web.
+[03] - Implantar políticas de conscientização para usuários sobre riscos e identificação de phishing.
+[04] - Implementar mecanismos de bloqueio automático em gateways para impedir conexões com sites maliciosos.
+[05] - Registrar e analisar eventos de bloqueio para identificar possíveis padrões ou ataques coordenados.
+
+AVALIAÇÃO:
+[01] - Data e Hora do Evento: {timestamp}
+[02] - Nível de Severidade: {rule:level}
+[03] - Descrição da Regra: {rule:description}
+[04] - ID da Regra: {rule:id}
+[05] - Frequência da Regra: {rule:firedtimes}
+[06] - IP de Origem: {data:srcip}
+[07] - Porta de Origem:{data:srcport}
+[08] - IP de Destino:{data:dstip}
+[09] - Porta de Destino: {data:dstport}
+[10] - URL Bloqueada: {data:url}
+[11] - Ação Realizada: {data:action}
+[12] - Serviço: {data:service}
+[13] - Direção: {data:direction}
+[14] - Interface Origem: {data:srcintfrole}
+[15] - Interface Destino: {data:dstintfrole}
+[16] - Nome do Dispositivo: {data:devname}
+[17] - ID do Dispositivo: {data:devid}
+[18] - Sessão ID: {data:sessionid}
+[19] - Perfil de Segurança: {data:profile}
+[20] - Categoria da URL: {data:catdesc}
+[21] - Bytes Enviados: {data:sentbyte}
+[22] - Bytes Recebidos: {data:rcvdbyte}
+[23] - Tipo de Evento: {data:type}
+[24] - Má Reputação de IP Origem (Indicador): {abuseipdb:found} 
+[25] - Má Reputação de IP Origem (Nível): {abuseipdb:abuse_confidence_score} 
+[26] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain} 
+[27] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:total_reports}  
+[28] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:last_reported_at}  
+[29] - Tipo de IP Origem: {abuseipdb:usage_type} 
+[30] - ISP de Origem: {abuseipdb:isp} 
+[31] - Código de País do IP Origem: {abuseipdb:country_code}
+
+MITIGAÇÃO:
+[01] - Atualizar filtros de conteúdo e antiphishing para garantir bloqueio eficiente de URLs suspeitas.
+[02] - Aplicar treinamentos regulares para equipes e usuários finais sobre segurança e reconhecimento de phishing.
+[03] - Utilizar autenticação multifator para dificultar o uso de credenciais comprometidas.
+[04] - Segmentar a rede para limitar o impacto de eventuais acessos maliciosos internos.
+[05] - Realizar auditorias periódicas de acesso à internet e aplicações críticas.
+
+CONTENÇÃO:
+[01] - Bloquear imediatamente o acesso do IP de origem para evitar tentativas futuras de phishing da mesma máquina.
+[02] - Isolar o dispositivo comprometido para investigação detalhada e remoção de eventuais ameaças.
+[03] - Revisar logs e comunicações para identificar usuários que possam ter sido expostos ao phishing.
+[04] - Notificar equipe de segurança e usuários afetados sobre o incidente e ações recomendadas.
+
+CONCLUSÃO: O incidente detectado revela uma tentativa clara de phishing que foi prontamente bloqueada pelo sistema de segurança, evitando danos maiores. A ação preventiva foi crucial para proteger informações e usuários, destacando a necessidade contínua de monitoramento e conscientização. Evidências coletadas indicam origem interna tentando acessar um site malicioso externo, evidenciando risco elevado e a eficácia do controle implementado.
