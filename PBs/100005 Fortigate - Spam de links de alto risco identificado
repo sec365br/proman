@@ -1,0 +1,55 @@
+ANÁLISE DE INCIDENTE DE SEGURANÇA
+
+IDENTIFICAÇÃO: Foi detectado um acesso bloqueado a um website classificado como malicioso, com base em políticas de filtragem de conteúdo do firewall FortiGate. O acesso à URL maliciosa, categorizada como "Malicious Websites", foi identificado e interrompido automaticamente pelo sistema, prevenindo a comunicação com destinos possivelmente maliciosos hospedados fora do país.
+
+ETAPAS DO ATAQUE:
+[01] - O agente de ameaça provavelmente iniciou uma varredura de alvos internos ou utilizou engenharia social para induzir o usuário a tentar acessar um domínio malicioso hospedado fora do país. 
+[02] - O sistema tentou iniciar uma conexão HTTPS a partir de uma das portas de acesso disponíveis pelo servidor remoto. Este tipo de conexão costuma ser utilizado por malwares para se comunicar com servidores de comando e controle 
+[03] - O site malicioso tenta explorar vulnerabilidades do navegador, plugins ou sistemas para execução de código malicioso.
+[04] - O malware ou script tenta comunicação com servidores externos para baixar payloads adicionais, receber comandos ou exfiltrar dados.
+[05] - O atacante pode usar técnicas para evitar bloqueios, como alterar URLs, usar criptografia, domínios dinâmicos e proxies.
+
+AVALIAÇÃO:
+[01] - Data e Hora do Evento: {timestamp}
+[02] - Nível de Severidade: {rule:level}
+[03] - Descrição da Regra: {rule:description}
+[04] - ID da Regra: {rule:id}
+[05] - Frequência da Regra: {rule:firedtimes}
+[06] - IP de Origem: {data:srcip}
+[07] - Porta de Origem:{data:srcport}
+[08] - IP de Destino:{data:dstip}
+[09] - Porta de Destino: {data:dstport}
+[10] - Direção: {data:direction}
+[11] - Serviço: {data:service}
+[12] - Ação Detectada: {data:action}
+[13] - Interface Origem: {data:srcintf}
+[14] - Interface Destino: {data:dstintfrole}
+[15] - Nome do Dispositivo: {data:devname} 
+[16] - ID do Dispositivo: {data:devid}
+[17] - Sessão ID: {data:sessionid}
+[18] - Perfil de Segurança: {data:profile}
+[19] - Referência: {data:ref}
+[20] - Tipo de Evento: {data:type}
+[21] - Má Reputação de IP Origem (Indicador): {abuseipdb:found} 
+[22] - Má Reputação de IP Origem (Nível): {abuseipdb:abuse_confidence_score} 
+[23] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain} 
+[24] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:total_reports}  
+[25] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:last_reported_at}  
+[26] - Tipo de IP Origem: {abuseipdb:usage_type} 
+[27] - ISP de Origem: {abuseipdb:isp} 
+[28] - Código de País do IP Origem: {abuseipdb:country_code}
+
+MITIGAÇÃO:
+[01] - Implementar/ revisar políticas de filtragem URL e DNS rigorosas, bloqueando categorias conhecidas de websites maliciosos.
+[02] - Realizar campanhas de conscientização para evitar cliques em links suspeitos ou downloads não autorizados.
+[03] - Implementar inspeção SSL para o protocolo de conexão para validar o conteúdo das conexões criptografadas.
+[04] - Monitorar endpoints com EDR/antivírus atualizados para detectar comportamentos anômalos mesmo após bloqueios.
+[05] - Atualizar/revisar assinaturas e listas negras  existentes de domínios maliciosos em firewalls, proxies e sistemas de segurança.
+
+CONTENÇÃO:
+[01] - Isolar imediatamente o host de origem com o referente IP para evitar propagação do ataque na rede local.
+[02] - Bloquear temporariamente as portas referentes ao protocolo envolvidas no incidente para interromper tentativas futuras de acesso.
+[03] - Finalizar sessões de rede ativas associadas ao IP de origem e destino do incidente para interromper qualquer comunicação em andamento..
+[04] - Realizar varredura de segurança no host comprometido para identificar e remover malwares ou backdoors.
+
+CONCLUSÃO: O incidente detectado envolve uma tentativa de acesso a um website malicioso, o que sugere um ataque cibernético visando explorar vulnerabilidades através de tráfego do protocolo da aplicação referente e possivelmente a execução de código malicioso.A ação foi prontamente bloqueada pelo sistema de filtragem de conteúdo, demonstrando a eficácia das políticas de segurança em vigor. É fundamental fortalecer as políticas de segurança, incluindo a revisão de regras de filtragem de URLs e a implementação de inspeção SSL do protocolo da aplicação, além de continuar monitorando o tráfego de rede e os endpoints.
