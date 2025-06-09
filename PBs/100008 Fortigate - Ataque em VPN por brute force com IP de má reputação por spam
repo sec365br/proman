@@ -1,0 +1,49 @@
+ANÁLISE DE INCIDENTE DE SEGURANÇA
+
+IDENTIFICAÇÃO: Fora detectado um ataque do tipo Força Bruta, utilizando como túnel de comunicação a VPN da rede usando um protocolo SSL com a tentativa de múltiplos logins usando as credenciais incorretas ["dstuser": "test"]. Esse incidente, de nível Alto, foi realizado por um agente perpetrador de ameaças ou por um Bot, que usa um IP conhecido por más práticas (SPAM, Ataques… etc), esse tipo de ataque consiste em fazer inúmeras tentativas de login, testando diferentes combinações de nomes de usuário e senhas, com o objetivo de descobrir credenciais válidas, garantindo assim acesso interno a rede da organização, exploração dos sistemas internos, como bancos de dados e servidores, além do roubo de dados sensíveis.
+
+ETAPAS DO ATAQUE:
+[01] O atacante identifica o endereço IP público da organização e detecta serviços expostos, como a interface da VPN SSL. Ele também pode tentar descobrir nomes de usuários comuns (como admin, test, user, etc.).
+[02] Utiliza listas pré-definidas de nomes de usuários e senhas (wordlists), ou ferramentas como Hydra, Medusa, Ncrack, entre outras, para preparar um ataque automatizado.
+[03] Inicia uma série de tentativas de login, variando usuários e senhas rapidamente, com o objetivo de encontrar uma combinação válida. Isso pode envolver ataques simples (com listas fixas) ou ataques adaptativos, que mudam a abordagem conforme as respostas do sistema.
+[04] Caso uma combinação seja bem-sucedida, o atacante obtém acesso à VPN e, portanto, à rede interna da organização. Isso pode incluir privilégios de usuário comum ou, em alguns casos, administrativos.
+[05] Implementar acesso a escalas de privilégios, movimentar-se lateralmente na rede para obter novas informações, instalar Ransomwares ou backdoors e por fim exfiltrar dados sensíveis.
+
+AVALIAÇÃO:
+[01] - Data e Hora do Evento: {timestamp}
+[02] - Nível de Severidade: {rule:level}
+[03] - Descrição da Regra: {rule:description}
+[04] - ID da Regra: {rule:id}
+[05] - Frequência da Regra: {rule:firedtimes}
+[06] - Id Identificado: {data:dstuser}
+[07] - IP de Origem: {data:remip}
+[08] - IP de Destinp: {data:dst_host}
+[09] - Nivel de Alerta: {data:alert}
+[10] - Ação Detectada: {data:action}
+[11] - Tipo de Acesso: {data:tunneltype}
+[12] - Nome do Dispositivo: {data:devname} 
+[13] - ID do Dispositivo: {data:devid}
+[14] - Tipo de Evento: {data:type}
+[15] - Má Reputação de IP Origem (Indicador): {abuseipdb:found} 
+[16] - Má Reputação de IP Origem (Nível): {abuseipdb:abuse_confidence_score} 
+[17] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain} 
+[18] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:total_reports}  
+[19] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:last_reported_at}  
+[20] - Tipo de IP Origem: {abuseipdb:usage_type} 
+[21] - ISP de Origem: {abuseipdb:isp} 
+[22] - Código de País do IP Origem: {abuseipdb:country_code}
+
+MITIGAÇÃO:
+[01] Aplicar o bloqueio automático de IP após tentativas falhas sucessivas.
+[02] Habilitar ou exigir autenticação de usuários por multifator (MFA).
+[03] Restringir VPN por Geolocalização bloqueando acesso de regiões comumente usadas em ataques automatizados.
+[04] Enviar alerta automático para o time de segurança ao detectar 3 falhas de login consecutivas do mesmo IP em menos de 2 minutos.
+[05] Bloquear IPs com reputação negativa em listas como Spamhaus, AbuseIPDB ou Threat Intelligence Feeds.
+
+CONTENÇÃO:
+[01] Identifique o IP de onde estão vindo as tentativas de login falhas e bloqueie-o no firewall imediatamente para impedir mais conexões.
+[02] Se o ataque estiver muito intenso e ameaçar a infraestrutura, pause temporariamente o serviço VPN enquanto investiga e ajusta as defesas.
+[03] Exigir que todos os usuários da VPN troquem suas senhas imediatamente para senhas fortes, longas e complexas para dificultar o sucesso do brute force.
+[04] Ative alertas em tempo real para falhas de login e comportamentos suspeitos, permitindo resposta rápida para bloquear novos IPs e detectar novas técnicas do atacante.
+
+CONCLUSÃO: O incidente identificado trata-se de uma tentativa de ataque por força bruta em VPN, utilizando IP de má reputação associado a atividades de spam, o que indica ações maliciosas direcionadas a obter acesso não autorizado à rede. A detecção precoce e o alto nível de severidade demonstram a eficácia do sistema de monitoramento em identificar tentativas suspeitas de login. Recomenda-se intensificar as medidas de segurança, como bloqueio automático de IPs, aplicação de autenticação multifator e monitoramento contínuo, para minimizar riscos e evitar impactos maiores. As evidências coletadas confirmam a ocorrência do ataque, permitindo a adoção imediata de ações corretivas e preventivas para impedir reincidências.
