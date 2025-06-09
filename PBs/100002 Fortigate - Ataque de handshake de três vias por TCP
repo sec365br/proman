@@ -1,0 +1,55 @@
+ANÁLISE DE INCIDENTE DE SEGURANÇA
+
+IDENTIFICAÇÃO: Foi detectado um ataque do tipo "handshake de três vias por TCP" (TCP.Split.Handshake) caracterizado pela manipulação anômala do estabelecimento de conexões TCP, com potencial para burlar controles de segurança tradicionais. Esse incidente sugere uma tentativa de comprometer a integridade do processo de handshake TCP, o que pode ser explorado para invasão, negação de serviço ou captura de sessões. O ataque pode ter como alvo servidores ou dispositivos na rede que aceitam conexões TCP, visando comprometer a disponibilidade, integridade ou confidencialidade da comunicação. O impacto potencial inclui interrupção do serviço, exploração de vulnerabilidades e evasão de mecanismos de segurança.
+
+ETAPAS DO ATAQUE:
+[01] Monitorar e analisar logs de conexões TCP para identificar padrões anômalos no handshake e detectar tentativas precoces de ataque.
+[02] Atualizar assinaturas e regras do sistema de intrusão para aprimorar a detecção e bloqueio automático de handshakes TCP manipulados.
+[03] Segmentar a rede para isolar sistemas críticos, limitando conexões TCP externas e reduzindo vetores de ataque.
+[04] Realizar análises comportamentais em tráfego TCP para detectar variações incomuns em estados de conexão.
+[05] Implementar sistemas de alerta em tempo real para resposta rápida a incidentes detectados pelo sistema de intrusão.
+
+AVALIAÇÃO:
+[01] - Data e Hora do Evento: {timestamp}
+[02] - Nível de Severidade: {rule:level}
+[03] - Descrição da Regra: {rule:description}
+[04] - ID da Regra: {rule:id}
+[05] - Frequência da Regra: {rule:firedtimes}
+[06] - IP de Origem: {data:srcip}
+[07] - Porta de Origem:{data:srcport}
+[08] - IP de Destino:{data:dstip}
+[09] - Porta de Destino: {data:dstport}
+[10] - Direção: {data:direction}
+[11] - Serviço: {data:service}
+[12] - Ação Detectada: {data:action}
+[13] - Interface Origem: {data:srcintfrole}
+[14] - Interface Destino: {data:dstintfrole}
+[15] - Nome do Dispositivo: {data:devname} 
+[16] - ID do Dispositivo: {data:devid}
+[17] - Sessão ID: {data:sessionid}
+[18] - Perfil de Segurança: {data:profile}
+[19] - Referência: {data:ref}
+[20] - Tipo de Evento: {data:type}
+[21] - Má Reputação de IP Origem (Indicador): {abuseipdb:found} 
+[22] - Má Reputação de IP Origem (Nível): {abuseipdb:abuse_confidence_score} 
+[23] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain} 
+[24] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:total_reports}  
+[25] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:last_reported_at}  
+[26] - Tipo de IP Origem: {abuseipdb:usage_type} 
+[27] - ISP de Origem: {abuseipdb:isp} 
+[28] - Código de País do IP Origem: {abuseipdb:country_code}
+
+MITIGAÇÃO:
+[01] Aplicar regras de firewall restritivas para conexões TCP apenas em portas e origens confiáveis, minimizando exposição.
+[02] Habilitar inspeção profunda de pacotes para validar corretamente o handshake TCP, prevenindo falsificações.
+[03] Manter sistemas e dispositivos atualizados com patches de segurança focados em vulnerabilidades de rede.
+[04] Treinar equipe de segurança para identificar e reagir rapidamente a sinais de manipulação de protocolos.
+[05] Utilizar técnicas de segmentação e controle de acesso baseadas em função para limitar conexões suspeitas.
+
+CONTENÇÃO:
+[01] Isolar imediatamente o host de origem com o referente IP para evitar propagação do ataque na rede local.
+[02] Bloquear temporariamente as portas TCP envolvidas no incidente para interromper tentativas de handshake malicioso.
+[03] Analisar e limpar qualquer tráfego ou sessão persistente relacionada à conexão detectada.
+[04] Executar varreduras adicionais para identificar possíveis compromissos correlacionados na rede.
+
+CONCLUSÃO: O incidente identificado trata-se de uma tentativa de ataque via manipulação do handshake TCP, o que pode indicar ações maliciosas visando comprometimento da rede ou evasão de segurança. A detecção precoce e o nível médio de severidade indicam efetividade do sistema de intrusão em monitorar tráfego suspeito. Recomenda-se reforçar controles e monitoramento para evitar impactos maiores, bem como investigar a origem para prevenir reincidência. Evidências coletadas confirmam a ocorrência do evento, possibilitando ações corretivas imediatas.
