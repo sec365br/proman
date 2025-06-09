@@ -1,0 +1,50 @@
+ANÁLISE DE INCIDENTE DE SEGURANÇA
+
+IDENTIFICAÇÃO: Foi detectado um incidente envolvendo uma conexão via proxy classificada como de risco crítico, indicando o uso de um intermediário não autorizado para comunicação de protocolo da aplicação. Esse tipo de atividade pode ser utilizado por agentes maliciosos para mascarar suas verdadeiras origens, burlar controles de segurança e realizar atividades ilegítimas. Os atacantes podem visar sistemas internos para extrair dados, executar comandos ou realizar movimentações laterais, causando impactos sérios como vazamento de informações e comprometimento da integridade da rede.
+
+ETAPAS DO ATAQUE:
+[01] - Monitorar conexões proxy suspeitas para identificar tentativas de mascaramento de tráfego malicioso em tempo real.
+[02] - Atualizar regras de controle de aplicação para detectar e bloquear proxies não autorizados automaticamente.
+[03] - Implementar análise comportamental para identificar padrões anômalos de tráfego do protocolo de aplicação via proxy.
+[04] - Segmentar redes para limitar a comunicação entre dispositivos e reduzir impacto de proxies maliciosos.
+[05] - Configurar alertas em tempo real para resposta rápida a tentativas de acesso via proxy crítico.
+
+AVALIAÇÃO:
+[01] - Data e Hora do Evento: {timestamp}
+[02] - Nível de Severidade:{rule:level}
+[03] - Descrição da Regra: {rule:description}
+[04] - ID da Regra: {rule:id}
+[05] - Frequência da Regra: {rule:firedtimes}
+[06] - IP de Origem: {data:srcip}
+[07] - Porta de Origem: {data:srcport}
+[08] - IP de Destino: {data:dstip}
+[09] - Porta de Destino: {data:dstport}
+[10] - URL/Endpoint: {data:url}
+[11] - Ação Realizada: {data:action}
+[12] - Serviço: {data:service}
+[13] - Direção: {data:direction}
+[14] - Interface Origem: {data:srcintf}
+[15] - Interface Destino: {data:dstintfrole}
+[16] - Nome do Dispositivo: {data:devname}
+[17] - ID do Dispositivo: {data:devid}
+[18] - Sessão ID: {data:sessionid}
+[19] - Aplicação: {data:app}
+[20] - Categoria da Aplicação: {data:cat}
+[21] - Risco da Aplicação: {data:apprisk}
+[22] - Mensagem: {data:msg}
+[23] - Tipo de Evento: {data:type}
+
+MITIGAÇÃO:
+[01] - Atualizar filtros e listas de controle de aplicações para bloquear automaticamente proxies conhecidos e de risco.
+[02] - Promover treinamentos para equipe de segurança reconhecer e responder a conexões via proxies suspeitos.
+[03] - Implementar autenticação e criptografia robustas para dificultar interceptação e manipulação de tráfego via proxy.
+[04] - Realizar auditorias periódicas para revisar políticas e ajustes necessários em controles de acesso.
+[05] - Utilizar tecnologias de inspeção profunda de pacotes para detectar tráfego oculto em conexões do protocolo de aplicação.
+
+CONTENÇÃO:
+[01] - Bloquear imediatamente o IP de origem identificado para interromper conexões via proxy crítico.
+[02] - Isolar a máquina envolvida para investigação detalhada e remoção de potenciais ameaças residuais.
+[03] - Revisar logs e monitorar comunicações correlacionadas para identificar possíveis acessos não autorizados.
+[04] - Notificar equipes e responsáveis pela segurança para ações coordenadas de mitigação.
+
+CONCLUSÃO: O incidente envolvendo conexão por proxy de risco crítico foi detectado e bloqueado com sucesso, evitando possível mascaramento de tráfego malicioso. A ação rápida protegeu a infraestrutura, destacando a importância do monitoramento e controles aplicados. Evidências coletadas auxiliam em análises futuras para reforçar a segurança.
