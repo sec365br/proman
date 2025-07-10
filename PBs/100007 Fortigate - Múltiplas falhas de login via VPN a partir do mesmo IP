@@ -15,11 +15,11 @@ AVALIAÇÃO:
 [03] - Descrição da Regra: {rule:description}
 [04] - ID da Regra: {rule:id}
 [05] - Frequência da Regra: {rule:firedtimes}
-[06] - Id Identificado: {data:dstuser}
+[06] - Usuário Identificado: {data:dstuser}
 [07] - IP de Origem: {data:remip}
-[08] - IP de Destinp: {data:dst_host}
+[08] - IP de Destino: {data:dst_host}
 [09] - Nivel de Alerta: {data:alert}
-[10] - Ação Detectada: {data:action}
+[10] - Ação do Firewall: {data:action}
 [11] - Tipo de Acesso: {data:tunneltype}
 [12] - Nome do Dispositivo: {data:devname} 
 [13] - ID do Dispositivo: {data:devid}
