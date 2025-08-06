@@ -15,7 +15,8 @@ O time de Hunting identifica ameaças avançadas que passam despercebidas por de
 - 02 - Lucas Bastos
 - 03 - Matheus Brito
 - 04 - Camilo Santos
-- 05 - Adriel Rodrigues
+- 05 - Matheus Rodrigues
+- 06 - Christhian Costa
 
 ---
 
@@ -25,7 +26,6 @@ Responsável por criar e manter soluções seguras, escaláveis e alinhadas às 
 **Colaboradores:**  
 - 01 -  Eduardo Ribeiro
 - 02 -  Hugo Silva
-- 03 -  Adriel Rodrigues
 
 ---
 
@@ -38,7 +38,6 @@ Coleta, analisa e dissemina informações estratégicas sobre ameaças cibernét
 - 03 -  Lucas Bastos
 - 04 -  Matheus Brito
 - 05 -  Camilo Santos
-- 06 -  Adriel Rodrigues
 
 ---
 
@@ -72,3 +71,4 @@ Garante a operação segura e contínua da infraestrutura de tecnologia da empre
 
 📌 *Vamos juntos transformar esse espaço em um verdadeiro centro de excelência em cibersegurança.*  
 *Para qualquer dúvida, encaminhe à coordenação técnica ou ao gestor da área.*
+
