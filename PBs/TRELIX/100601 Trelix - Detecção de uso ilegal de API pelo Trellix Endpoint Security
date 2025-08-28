@@ -9,61 +9,60 @@ ETAPAS DO ATAQUE:
 02. O atacante pode executar comandos PowerShell contornando as políticas de execução, o que permite evitar restrições, manter o shell ativo para persistência e realizar movimentação lateral na rede, alcançando outras máquinas (pivoting).
 03. É possível que o atacante utilize uma API suspeita ou incomum para injetar código em outros processos, preparar a coleta de informações e executar ações correlatas.
 04. O atacante busca utilizar comandos legítimos e binários assinados para ocultar a presença do ataque, manter acesso por meio de serviços e tarefas agendadas do Windows e evitar a detecção por soluções antivírus, já que as ações aparentam ser legítimas.
-05. or fim, o atacante pode executar scripts de Comando e Controle (C2), permitindo a execução de payloads adicionais (como malwares) e a criação de túneis para facilitar outros vetores de ataque.
+05. Por fim, o atacante pode executar scripts de Comando e Controle (C2), permitindo a execução de payloads adicionais (como malwares) e a criação de túneis para facilitar outros vetores de ataque.
 
 AVALIAÇÃO:
 [01] - ID da regra: {rule:id} 
-[02] - Aviso por e-mail: {rule:mail} 
-[03] - Grupo: {rule:groups} 
-[04] - Id do Agente: {agent:id}
-[05] - Nome do Agente: {agent:name} 
-[06] - Nome do Manager: {manager:name} 
-[07] - Nome da Máquina: {data:machine_name}
-[08] - Endereço de Ip: {data:ip.address}
-[09] - Sistema Operacional: {data:os.name}
-[10] - Nome de Usuário: {data:username}
-[11] - Endereço Mac: {data:mac_address}
-[12] - Nome do Produto: {data:product_name}
-[13] - Família do Produto: {data:product_family}
-[14] - Versão do Produto: {data:product_version}
-[15] - Tipo de Analisador: {data:Analyzer}
-[16] - Nome do Analizador: {data:AnalyzerName}
-[17] - Versão do Analisador: {data:AnalyzerVersion}
-[18] - Hostname do Analisador: {data:AnalyzerHostName}
-[19] - Método de Detecção do Analisador: {data:AnalyzerDetectionMethod}
-[20] - Id do Evento: {data:EventID}
-[21] - Severidade do Evento: {data:Severity}
-[22] - Categoria da Ameaça: {data:ThreatCategory}
-[23] - Nome da Ameaça: {data:ThreatName}
-[24] - Tipo da Ameaça: {data:ThreatType}
-[25] - Ação Tomada: {data:ThreatActionTaken}
-[26] - Ameaça Tratada: {data:ThreatHandled}
-[27] - Hostname Alvo: {data:TargetHostName}
-[28] - Username Alvo: {data:TargetUserName}
-[29] - ProcessName Alvo: {data:TargetProcessName}
-[30] - Nome do Alvo: {data:TargetName}
-[31] - Caminho do Alvo: {data:TargetPath}
-[32] - Hash do Alvo: {data:TargetHash}
-[33] - Informações da Máquina : {data:MachineInfo}
-[34] - Descrição em Linguagem Natural: {data:NaturalLangDescription}
-[35] - Má Reputação de IP Origem (Indicador): {abuseipdb:found} 
-[36] - Má Reputação de IP Origem (Nível): {abuseipdb:abuse_confidence_score}
-[37] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain} 
-[38] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:total_reports}  
-[39] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:last_reported_at}
-[40] - Tipo de IP Origem: {abuseipdb:usage_type} 
-[41] - ISP de Origem: {abuseipdb:isp} 
-[42] - Código de País do IP Origem: {abuseipdb:country_code}
+[02] - Grupo: {rule:groups} 
+[03] - Id do Agente: {agent:id}
+[04] - Nome do Agente: {agent:name} 
+[05] - Nome do Manager: {manager:name} 
+[06] - Nome da Máquina: {data:machine_name}
+[07] - Endereço de Ip: {data:ip.address}
+[08] - Sistema Operacional: {data:os.name}
+[09] - Nome de Usuário: {data:username}
+[10] - Endereço Mac: {data:mac_address}
+[11] - Nome do Produto: {data:product_name}
+[12] - Família do Produto: {data:product_family}
+[13] - Versão do Produto: {data:product_version}
+[14] - Tipo de Analisador: {data:Analyzer}
+[15] - Nome do Analizador: {data:AnalyzerName}
+[16] - Versão do Analisador: {data:AnalyzerVersion}
+[17] - Hostname do Analisador: {data:AnalyzerHostName}
+[18] - Método de Detecção do Analisador: {data:AnalyzerDetectionMethod}
+[19] - Id do Evento: {data:EventID}
+[20] - Severidade do Evento: {data:Severity}
+[21] - Categoria da Ameaça: {data:ThreatCategory}
+[22] - Nome da Ameaça: {data:ThreatName}
+[23] - Tipo da Ameaça: {data:ThreatType}
+[24] - Ação Tomada: {data:ThreatActionTaken}
+[25] - Ameaça Tratada: {data:ThreatHandled}
+[26] - Hostname Alvo: {data:TargetHostName}
+[27] - Username Alvo: {data:TargetUserName}
+[28] - ProcessName Alvo: {data:TargetProcessName}
+[29] - Nome do Alvo: {data:TargetName}
+[30] - Caminho do Alvo: {data:TargetPath}
+[31] - Hash do Alvo: {data:TargetHash}
+[32] - Informações da Máquina : {data:MachineInfo}
+[33] - Descrição em Linguagem Natural: {data:NaturalLangDescription}
+[34] - Má Reputação de IP Origem (Indicador): {abuseipdb:found} 
+[35] - Má Reputação de IP Origem (Nível): {abuseipdb:abuse_confidence_score}
+[36] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain} 
+[37] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:total_reports}  
+[38] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:last_reported_at}
+[39] - Tipo de IP Origem: {abuseipdb:usage_type} 
+[40] - ISP de Origem: {abuseipdb:isp} 
+[41] - Código de País do IP Origem: {abuseipdb:country_code}
 
 MITIGAÇÃO:
 01. Aplicar políticas de restrição de execução do  uso do PowerShell via GPO e até desabilitar o PowerShell em servidores que não exigem seu uso administrativo diário.
 02. Habilitar e Monitorar o PowerShell Logging, garantindo que a ativação dos logs e as regras de alerta do Siem estão bem definidas para esse tipo de evento.
 03. Bloquear execuçoes suspeitas com técnicas de EDR  para  monitorar continuamente os dispositivos do usuário final  e responder a ameaças já inseridas ou que estão encaminhadas, como ransomware e malware.
-04. Implementar ou revisar o  sistema de controle de permissividade das aplicações, ou seja, criar uma whitelist, de quais scripts e binários quando pré aprovados podem operar, evitando execução de fgerramentas como o PowerShell de locais não esperados.
+04. Implementar ou revisar o  sistema de controle de permissividade das aplicações, ou seja, criar uma whitelist, de quais scripts e binários quando pré aprovados podem operar, evitando execução de ferramentas como o PowerShell de locais não esperados.
 05. Verificar a atualização das suas politicas de segurança e do Sistema Operacional (OS), migrando para sistemas suportados ou até mesmo aplicar "Hardening", diminuindo a superfície de ataque.
 
 CONTENÇÃO:
-01. Assim que for confirmado ou fortemente suspeitado o uso malicioso de PowerShell e técnicas evasivas, a primeira medida é isolar o host, da rede
+01. Assim que for confirmado ou fortemente suspeitado o uso malicioso de PowerShell e técnicas evasivas, a primeira medida é isolar o host da rede
 02. Por haver o risco do atacante já ter escalado privilégios, é de suma importância revogar as sessões e credenciais ativas no momento. Alterar senhas de contas locais e administrativas, especialmente se forem compartilhadas ou mal gerenciadas
 03. Validar integridade de arquivos no caminho do PowerShell com hashes e timestamp além de encerrar qualquer instância dos terminais ativos.
 04. Reiniciar o sistema e antes de reiniciar ou alterar o sistema, deve-se capturar dados de memória, processos e conexões para permitir análise forense posterior como lista de processos em execução ou conexões de rede abertas.
