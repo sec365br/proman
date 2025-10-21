@@ -1,0 +1,56 @@
+PLAYBOOK - 100115
+==================================================
+
+IDENTIFICAÇÃO:
+Host acessou ip externo usando uma aplicação conhecida. Sessão permitida e aplicação marcada como em alguns casos de alto consumo de banda e uso pervasivo. Indica uso intensivo de largura de banda por aplicação não sancionada, possivelmente atividade legítima causando impacto em capacidade, ou uso indevido/abuso que reduz disponibilidade.
+
+ETAPAS DO ATAQUE:
+01. Abuso de serviço legítimo para consumo de banda ao usar aplicação ou APIs relacionadas para gerar tráfego massivo e degradar rede (DoS por consumo).
+02. Canais de dados camuflados em apps para aproveitar endpoints legítimos para reencaminhar/ocultar transferências (menor probabilidade, mas possível).
+03. Uso massivo por automação/malware ou um processo automatizado/comprometido gera requisições repetidas para mascarar atividade maliciosa.
+04. Ataca o usuário ou serviço que utiliza app fora das políticas, causando risco operacional e possível exposição de dados.
+
+AVALIAÇÃO:
+[01] - Nome Dispositivo: {data:device_name}
+[02] - Endereço Origem: {data:src_ip}
+[03] - Endereço Destino: {data:dst_ip}
+[04] - Porta de Destino dos Dados: {data:dst_port}
+[05] - Aplicação: {data:application}
+[06] - Categoria da Aplicação: {data:application_category}
+[07] - Características da Aplicação: {data:application_characteristics}
+[08] - Tecnologia da Aplicação: {data:application_technology}
+[09] - Verificação: {data:category}
+[10] - Protocolo de Rede: {data:ip_protocol}
+[11] - Ip do NAT destino: {data:nat_destination_ip}
+[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
+[13] - Ip do NAT Origem: {data:nat_source_ip}
+[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
+[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}
+[16] - Nome da Máquina Virtual: {data:virtual_system_name}
+[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
+[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
+[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
+[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
+[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
+[22] - Tipo de IP Origem: {abuseipdb:usageType}
+[23] - ISP de Origem: {abuseipdb:isp}
+[24] - Código de País do IP de Origem: {abuseipdb:countryCode}
+
+MITIGAÇÃO:
+01. Realizar um controle de apps e permissões onde é preciso permitir apenas aplicações aprovadas; bloquear ou restringir apple-maps se não for necessária.
+02. Configurar policing/shaping para evitar impacto na infraestrutura.
+03. Garantir que o SIEM/IPS  dispare quando host exceder thresholds de bytes/fluxo.
+04. Mapear quais apps são necessárias e treinar usuários sobre uso responsável; considerar DLP para dados sensíveis.
+
+CONTENÇÃO:
+01. Aplicar throttle (rate-limit) para o host  ou para o tráfego em borda.
+02. Bloquear a API/Aplicação temporariamente para hosts não autorizados ou colocar o host em quarentena se comportamento for anômalo.
+03. Criar políticas de QoS específicas para o tráfego da aplicação  a partir do host, limitando a largura de banda máxima que ele pode usar.
+
+CONCLUSÃO:
+Evento indica alto consumo de banda por API/Aplicação proveniente de um host interno. Risco principal é degradação de disponibilidade e violação de políticas de uso; probabilidade de atividade maliciosa é menor que em casos com tags “used-by-malware”, mas não pode ser ignorada. Recomenda‑se limitação imediata (QoS/bloco temporário), investigação do endpoint e implantação de controles de App Control e políticas de egress para prevenir recorrência.
+
+(JSON) : "100115":"<p align=justify><b>IDENTIFICAÇÃO:</b>\nHost acessou ip externo usando uma aplicação conhecida. Sessão permitida e aplicação marcada como em alguns casos de alto consumo de banda e uso pervasivo. Indica uso intensivo de largura de banda por aplicação não sancionada, possivelmente atividade legítima causando impacto em capacidade, ou uso indevido/abuso que reduz disponibilidade.\n\n<b>ETAPAS DO ATAQUE:</b>\n01. Abuso de serviço legítimo para consumo de banda ao usar aplicação ou APIs relacionadas para gerar tráfego massivo e degradar rede (DoS por consumo).\n02. Canais de dados camuflados em apps para aproveitar endpoints legítimos para reencaminhar/ocultar transferências (menor probabilidade, mas possível).\n03. Uso massivo por automação/malware ou um processo automatizado/comprometido gera requisições repetidas para mascarar atividade maliciosa.\n04. Ataca o usuário ou serviço que utiliza app fora das políticas, causando risco operacional e possível exposição de dados.\n\n<b>AVALIAÇÃO:</b>\n[01] - Nome Dispositivo: {data:device_name}\n[02] - Endereço Origem: {data:src_ip}\n[03] - Endereço Destino: {data:dst_ip}\n[04] - Porta de Destino dos Dados: {data:dst_port}\n[05] - Aplicação: {data:application}\n[06] - Categoria da Aplicação: {data:application_category}\n[07] - Características da Aplicação: {data:application_characteristics}\n[08] - Tecnologia da Aplicação: {data:application_technology}\n[09] - Verificação: {data:category}\n[10] - Protocolo de Rede: {data:ip_protocol}\n[11] - Ip do NAT destino: {data:nat_destination_ip}\n[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n[13] - Ip do NAT Origem: {data:nat_source_ip}\n[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n[16] - Nome da Máquina Virtual: {data:virtual_system_name}\n[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n[22] - Tipo de IP Origem: {abuseipdb:usageType}\n[23] - ISP de Origem: {abuseipdb:isp}\n[24] - Código de País do IP de Origem: {abuseipdb:countryCode}\n\n<b>MITIGAÇÃO:</b>\n01. Realizar um controle de apps e permissões onde é preciso permitir apenas aplicações aprovadas; bloquear ou restringir apple-maps se não for necessária.\n02. Configurar policing/shaping para evitar impacto na infraestrutura.\n03. Garantir que o SIEM/IPS  dispare quando host exceder thresholds de bytes/fluxo.\n04. Mapear quais apps são necessárias e treinar usuários sobre uso responsável; considerar DLP para dados sensíveis.\n\n<b>CONTENÇÃO:</b>\n01. Aplicar throttle (rate-limit) para o host  ou para o tráfego em borda.\n02. Bloquear a API/Aplicação temporariamente para hosts não autorizados ou colocar o host em quarentena se comportamento for anômalo.\n03. Criar políticas de QoS específicas para o tráfego da aplicação  a partir do host, limitando a largura de banda máxima que ele pode usar.\n\n<b>CONCLUSÃO:</b> Evento indica alto consumo de banda por API/Aplicação proveniente de um host interno. Risco principal é degradação de disponibilidade e violação de políticas de uso; probabilidade de atividade maliciosa é menor que em casos com tags “used-by-malware”, mas não pode ser ignorada. Recomenda‑se limitação imediata (QoS/bloco temporário), investigação do endpoint e implantação de controles de App Control e políticas de egress para prevenir recorrência.</p>",
+
+==================================================
+Playbook gerado em: 21/10/2025 às 07:53:54
