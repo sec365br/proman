@@ -5,38 +5,36 @@ IDENTIFICAÇÃO:
 O incidente de segurança identificado envolve uma conexão pervasiva permitida através do firewall, que utiliza o protocolo através de uma porta. Essa conexão apresenta vulnerabilidade conhecida, o que a torna suscetível a explorações por malware. O tráfego foi permitido pela política do firewall, indicando que não há bloqueios configurados para este tipo de comunicação. Este incidente destaca a necessidade de uma revisão das políticas de segurança para evitar que vulnerabilidades conhecidas sejam exploradas. O objetivo potencial dos atacantes pode incluir o comprometimento da integridade, confidencialidade e disponibilidade do sistema. O impacto dos atacantes pode incluir a obtenção de dados sensíveis, interrupção dos serviços e controle não autorizado do sistema. O impacto potencial envolve perda de dados, danos financeiros e comprometimento da segurança operacional.
 
 ETAPAS DO ATAQUE:
-01. Mapemento de hosts e serviços, como por exemplo portas de serviço Oracle
-02. Envia sondas/handshakes para identificar versão, serviços, e vulnerabilidades (descobre que serviço é Oracle e se há CVE aplicável)
+01. Mapemento de hosts e serviços, como por exemplo portas de serviços específicos.
+02. Envia sondas/handshakes para identificar versão, serviços, e vulnerabilidades (descobre qual serviço está vulnerável e se há CVE aplicável)
 03. Explora a vulnerabilidade para executar código, abrir sessão ou ganhar credenciais, com possível movimentação lateral.
 04. Uma vez dentro, tenta mover-se para outros hosts, criar backdoors, ou criar contas e até coleta e transfere dados sensíveis para fora; apaga logs ou encerra conexões para dificultar detecção.
 
 AVALIAÇÃO:
-[01] - Endereço Origem: {data:src_ip}
-[02] - Endereço Destino: {data:dst_ip}
-[03] - Ip do NAT Origem: {data:nat_source_ip}
-[04] - Ip do NAT destino: {data:nat_destination_ip}
+[01] - Nome Dispositivo: {data:device_name}
+[02] - Endereço Origem: {data:src_ip}
+[03] - Endereço Destino: {data:dst_ip}
+[04] - Porta de Destino dos Dados: {data:dst_port}
 [05] - Aplicação: {data:application}
-[06] - Porta de Destino dos Dados: {data:dst_port}
-[07] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
-[08] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
-[09] - Protocolo de Rede: {data:ip_protocol}
-[10] - Verificação: {data:category}
-[11] - País de Origem dos Dados: {data:source_location}
-[12] - País de Destino dos Dados: {data:destination_location}
-[13] - Nome da Máquina Virtual: {data:virtual_system_name}
-[14] - Nome Dispositivo: {data:device_name}
-[15] - Categoria da Aplicação: {data:application_category}
-[16] - Tecnologia da Aplicação: {data:application_technology}
-[17] - Características da Aplicação: {data:application_characteristics}
-[18] - Dados da Aplicação Encapsulada: {data:tunneled_application}
-[19] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
-[20] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
-[21] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
-[22] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
-[23] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
-[24] - Tipo de IP Origem: {abuseipdb:usageType}
-[25] - ISP de Origem: {abuseipdb:isp}
-[26] - Código de País do IP de Origem: {abuseipdb:countryCode}
+[06] - Categoria da Aplicação: {data:application_category}
+[07] - Características da Aplicação: {data:application_characteristics}
+[08] - Tecnologia da Aplicação: {data:application_technology}
+[09] - Verificação: {data:category}
+[10] - Protocolo de Rede: {data:ip_protocol}
+[11] - Ip do NAT destino: {data:nat_destination_ip}
+[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
+[13] - Ip do NAT Origem: {data:nat_source_ip}
+[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
+[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}
+[16] - Nome da Máquina Virtual: {data:virtual_system_name}
+[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
+[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
+[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
+[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
+[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
+[22] - Tipo de IP Origem: {abuseipdb:usageType}
+[23] - ISP de Origem: {abuseipdb:isp}
+[24] - Código de País do IP de Origem: {abuseipdb:countryCode}
 
 MITIGAÇÃO:
 01. Atualizar as assinaturas para detectar e bloquear tráfego malicioso.
@@ -52,6 +50,7 @@ CONTENÇÃO:
 CONCLUSÃO:
 O incidente destacou uma vulnerabilidade crítica em uma conexão permitida, evidenciando a necessidade de medidas de segurança aprimoradas. A mitigação eficaz requer monitoramento contínuo, atualizações regulares e conscientização de segurança. A identificação precoce e a resposta rápida são essenciais para proteger a integridade do sistema.
 
-(JSON) : "100111":"<p align=justify><b>IDENTIFICAÇÃO:</b>\n O incidente de segurança identificado envolve uma conexão pervasiva permitida através do firewall, que utiliza o protocolo através de uma porta. Essa conexão apresenta vulnerabilidade conhecida, o que a torna suscetível a explorações por malware. O tráfego foi permitido pela política do firewall, indicando que não há bloqueios configurados para este tipo de comunicação. Este incidente destaca a necessidade de uma revisão das políticas de segurança para evitar que vulnerabilidades conhecidas sejam exploradas. O objetivo potencial dos atacantes pode incluir o comprometimento da integridade, confidencialidade e disponibilidade do sistema. O impacto dos atacantes pode incluir a obtenção de dados sensíveis, interrupção dos serviços e controle não autorizado do sistema. O impacto potencial envolve perda de dados, danos financeiros e comprometimento da segurança operacional. \n \n <b>ETAPAS DO ATAQUE:</b>\n 1. Mapemento de hosts e serviços, como por exemplo portas de serviço Oracle\n 2. Envia sondas/handshakes para identificar versão, serviços, e vulnerabilidades (descobre que serviço é Oracle e se há CVE aplicável)\n 3. Explora a vulnerabilidade para executar código, abrir sessão ou ganhar credenciais, com possível movimentação lateral.\n 4. Uma vez dentro, tenta mover-se para outros hosts, criar backdoors, ou criar contas e até coleta e transfere dados sensíveis para fora; apaga logs ou encerra conexões para dificultar detecção.\n \n <b>AVALIAÇÃO:</b>\n [01] - Endereço Origem: {data:src_ip}\n [02] - Endereço Destino: {data:dst_ip}\n [03] - Ip do NAT Origem: {data:nat_source_ip}\n [04] - Ip do NAT destino: {data:nat_destination_ip}\n [05] - Aplicação: {data:application}\n [06] - Porta de Destino dos Dados: {data:dst_port}\n [07] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n [08] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n [09] - Protocolo de Rede: {data:ip_protocol}\n [10] - Verificação: {data:category}\n [11] - País de Origem dos Dados: {data:source_location}\n [12] - País de Destino dos Dados: {data:destination_location}\n [13] - Nome da Máquina Virtual: {data:virtual_system_name}\n [14] - Nome Dispositivo: {data:device_name}\n [15] - Categoria da Aplicação: {data:application_category}\n [16] - Tecnologia da Aplicação: {data:application_technology}\n [17] - Características da Aplicação: {data:application_characteristics}\n [18] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n [19] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n [20] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n [21] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n [22] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n [23] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n [24] - Tipo de IP Origem: {abuseipdb:usageType}\n [25] - ISP de Origem: {abuseipdb:isp}\n [26] - Código de País do IP de Origem: {abuseipdb:countryCode}\n \n <b>MITIGAÇÃO:</b> \n 1. Atualizar as assinaturas para detectar e bloquear tráfego malicioso.\n 2. Implementar políticas de controle de acesso estritas para serviços críticos.\n 3. Utilizar ferramentas de análise comportamental para detectar atividades anômalas.\n 4. Estabelecer um programa de conscientização de segurança para educar os usuários sobre ameaças.\n \n <b>CONTENÇÃO:</b> \n 1. Isolar a rede afetada para impedir a propagação do ataque.\n 2. Reiniciar sessões suspeitas e redefinir credenciais comprometidas.\n 3. Executar análises forenses para identificar a origem e o escopo do ataque.\n \n <b>CONCLUSÃO:</b> O incidente destacou uma vulnerabilidade crítica em uma conexão permitida, evidenciando a necessidade de medidas de segurança aprimoradas. A mitigação eficaz requer monitoramento contínuo, atualizações regulares e conscientização de segurança. A identificação precoce e a resposta rápida são essenciais para proteger a integridade do sistema.</p>",
+(JSON) : "100111":"<p align=justify><b>IDENTIFICAÇÃO:</b>\nO incidente de segurança identificado envolve uma conexão pervasiva permitida através do firewall, que utiliza o protocolo através de uma porta. Essa conexão apresenta vulnerabilidade conhecida, o que a torna suscetível a explorações por malware. O tráfego foi permitido pela política do firewall, indicando que não há bloqueios configurados para este tipo de comunicação. Este incidente destaca a necessidade de uma revisão das políticas de segurança para evitar que vulnerabilidades conhecidas sejam exploradas. O objetivo potencial dos atacantes pode incluir o comprometimento da integridade, confidencialidade e disponibilidade do sistema. O impacto dos atacantes pode incluir a obtenção de dados sensíveis, interrupção dos serviços e controle não autorizado do sistema. O impacto potencial envolve perda de dados, danos financeiros e comprometimento da segurança operacional.\n\n<b>ETAPAS DO ATAQUE:</b>\n01. Mapemento de hosts e serviços, como por exemplo portas de serviços específicos.\n02. Envia sondas/handshakes para identificar versão, serviços, e vulnerabilidades (descobre qual serviço está vulnerável e se há CVE aplicável)\n03. Explora a vulnerabilidade para executar código, abrir sessão ou ganhar credenciais, com possível movimentação lateral.\n04. Uma vez dentro, tenta mover-se para outros hosts, criar backdoors, ou criar contas e até coleta e transfere dados sensíveis para fora; apaga logs ou encerra conexões para dificultar detecção.\n\n<b>AVALIAÇÃO:</b>\n[01] - Nome Dispositivo: {data:device_name}\n[02] - Endereço Origem: {data:src_ip}\n[03] - Endereço Destino: {data:dst_ip}\n[04] - Porta de Destino dos Dados: {data:dst_port}\n[05] - Aplicação: {data:application}\n[06] - Categoria da Aplicação: {data:application_category}\n[07] - Características da Aplicação: {data:application_characteristics}\n[08] - Tecnologia da Aplicação: {data:application_technology}\n[09] - Verificação: {data:category}\n[10] - Protocolo de Rede: {data:ip_protocol}\n[11] - Ip do NAT destino: {data:nat_destination_ip}\n[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n[13] - Ip do NAT Origem: {data:nat_source_ip}\n[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n[16] - Nome da Máquina Virtual: {data:virtual_system_name}\n[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n[22] - Tipo de IP Origem: {abuseipdb:usageType}\n[23] - ISP de Origem: {abuseipdb:isp}\n[24] - Código de País do IP de Origem: {abuseipdb:countryCode}\n\n<b>MITIGAÇÃO:</b>\n01. Atualizar as assinaturas para detectar e bloquear tráfego malicioso.\n02. Implementar políticas de controle de acesso estritas para serviços críticos.\n03. Utilizar ferramentas de análise comportamental para detectar atividades anômalas.\n04. Estabelecer um programa de conscientização de segurança para educar os usuários sobre ameaças.\n\n<b>CONTENÇÃO:</b>\n01. Isolar a rede afetada para impedir a propagação do ataque.\n02. Reiniciar sessões suspeitas e redefinir credenciais comprometidas.\n03. Executar análises forenses para identificar a origem e o escopo do ataque.\n\n<b>CONCLUSÃO:</b> O incidente destacou uma vulnerabilidade crítica em uma conexão permitida, evidenciando a necessidade de medidas de segurança aprimoradas. A mitigação eficaz requer monitoramento contínuo, atualizações regulares e conscientização de segurança. A identificação precoce e a resposta rápida são essenciais para proteger a integridade do sistema.</p>",
+
 ==================================================
-Playbook gerado em: 16/09/2025 às 15:22:50
+Playbook gerado em: 21/10/2025 às 06:20:31
