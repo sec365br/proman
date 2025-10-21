@@ -2,57 +2,55 @@ PLAYBOOK - 100122
 ==================================================
 
 IDENTIFICAÇÃO:
-O incidente de segurança identificado envolve atividade maliciosa que utiliza túneis para ocultar outros aplicativos através de uma conexão pervasiva com vulnerabilidades conhecidas. Esse tipo de conexão permite que tráfego potencialmente malicioso seja transmitido de forma disfarçada, dificultando a detecção. Além disso, a natureza pervasiva e as vulnerabilidades associadas tornam essa conexão uma porta de entrada para possíveis ameaças de malware. A conexão permitida via protocolo aumenta o risco de exploração por atacantes, que podem utilizar essa brecha para fins de coleta de dados e outras atividades prejudiciais.
+Host interno  enviou ICMP para um destino fora do Brasil. A sessão foi permitida pelo firewall e a aplicação/fluxo ICMP está marcada como uso comum de malware, vulnerabilidade conhecida e uso pervasibo com forte indício de ICMP tunneling (canal oculto) possivelmente usado para C2 ou exfiltração de arquivos.
 
 ETAPAS DO ATAQUE:
-01. Realize monitoramento contínuo de tráfego do protocolo para detectar atividades incomuns ou com padrões associados a tentativas de túnel.
-02. Aplique regras de firewall para bloquear o protocolo em áreas sensíveis da rede e limitar conexões indesejadas.
-03. Utilize segmentação de rede para isolar serviços críticos, evitando a propagação de atividades maliciosas.
-04. Inspecione regularmente logs para identificar tentativas de tráfego oculto, garantindo detecção precoce.
-05. Implemente verificações de integridade nos dispositivos conectados para identificar comportamentos irregulares.
+01. O atacante tentará usar pacotes ICMP para enviar/receber comandos periodicamente, evitando inspeção típica de HTTP/HTTPS.
+02. O atacante pode  fragmentar dados em payloads ICMP (ping) e enviá‑los para servidor remoto.
+03. Pode haver o uso de  ICMP para mapear topologia e latência sem disparar regras focadas em TCP/UDP.
+04. Em alguns caso há a tentativa de  manter ICMP como canal secundário caso outros canais sejam bloqueados, garantindo persistência.
 
 AVALIAÇÃO:
-[01] - Endereço Origem: {data:src_ip}
-[02] - Endereço Destino: {data:dst_ip}
-[03] - Ip do NAT Origem: {data:nat_source_ip}
-[04] - Ip do NAT destino: {data:nat_destination_ip}
+[01] - Nome Dispositivo: {data:device_name}
+[02] - Endereço Origem: {data:src_ip}
+[03] - Endereço Destino: {data:dst_ip}
+[04] - Porta de Destino dos Dados: {data:dst_port}
 [05] - Aplicação: {data:application}
-[06] - Porta de Destino dos Dados: {data:dst_port}
-[07] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
-[08] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
-[09] - Protocolo de Rede: {data:ip_protocol}
-[10] - Verificação: {data:category}
-[11] - País de Origem dos Dados: {data:source_location}
-[12] - País de Destino dos Dados: {data:destination_location}
-[13] - Nome da Máquina Virtual: {data:virtual_system_name}
-[14] - Nome Dispositivo: {data:device_name}
-[15] - Categoria da Aplicação: {data:application_category}
-[16] - Tecnologia da Aplicação: {data:application_technology}
-[17] - Características da Aplicação: {data:application_characteristics}
-[18] - Dados da Aplicação Encapsulada: {data:tunneled_application}
-[19] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
-[20] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
-[21] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
-[22] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
-[23] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
-[24] - Tipo de IP Origem: {abuseipdb:usageType}
-[25] - ISP de Origem: {abuseipdb:isp}
-[26] - Código de País do IP de Origem: {abuseipdb:countryCode}
+[06] - Categoria da Aplicação: {data:application_category}
+[07] - Características da Aplicação: {data:application_characteristics}
+[08] - Tecnologia da Aplicação: {data:application_technology}
+[09] - Verificação: {data:category}
+[10] - Protocolo de Rede: {data:ip_protocol}
+[11] - Ip do NAT destino: {data:nat_destination_ip}
+[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
+[13] - Ip do NAT Origem: {data:nat_source_ip}
+[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
+[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}
+[16] - Nome da Máquina Virtual: {data:virtual_system_name}
+[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
+[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
+[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
+[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
+[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
+[22] - Tipo de IP Origem: {abuseipdb:usageType}
+[23] - ISP de Origem: {abuseipdb:isp}
+[24] - Código de País do IP de Origem: {abuseipdb:countryCode}
 
 MITIGAÇÃO:
-01. Configure o firewall para bloquear tentativas de tunelamento não autorizadas e limitação de apenas funcionalidades críticas.
-02. Fortaleça a detecção de comportamento anômalo nas redes para sinalizar atividades de ocultação de aplicativos.
-03. Adote segmentação de rede para proteger ativos críticos e mitigar movimentos laterais de atacantes.
-04. Aplique autenticação multifatorial em todos os pontos de acesso para impedir atividades não autorizadas.
+01. Criar políticas de egress que permitam apenas tipos ICMP necessários (por exemplo, echo-reply para diagnóstico interno) e bloquear destino externo não autorizado.
+02. Segmentar hosts críticos e criar lista de destinos autorizados; usar egress filtering para impedir conexões diretas a IPs externos não aprovados.
+03. Garantir EDR ativo, aplicar patches e restringir processos/serviços que possam gerar ICMP com payload arbitrário.
+04. Implemente autenticação multifatorial para limitar o acesso a recursos internos e proteger dados sensíveis.
 
 CONTENÇÃO:
-01. Isolar a conexão maliciosa identificada para impedir a disseminação de atividades de ocultação.
-02. Realizar análise detalhada de logs e dispositivos associados para garantir ausência de ameaças adicionais.
-03. Atualizar as regras de firewall para bloquear permanentemente tentativas de tráfego não autorizado.
+01. Isolar o host via (VLAN de quarentena ou bloquear tráfego L3) até análise forense.
+02. Bloquear tráfego ICMP para o ip nat de destino (regra temporária no firewall) e criar bloqueio para destinos similares observados.
+03. Capturar pcap do tráfego ICMP, logs do endpoint (EDR), e históricos de firewall/SIEM antes de qualquer limpeza.
 
 CONCLUSÃO:
-Este incidente revela uma atividade maliciosa que utiliza túneis para ocultar outros aplicativos em uma conexão com vulnerabilidades conhecidas. Monitoramento contínuo e segmentação são fundamentais para prevenir abusos futuros e evitar riscos de exploração adicionais.
+O evento sugere um canal ICMP oculto potencialmente usado para comando/controle ou exfiltração, com características associadas a malware e vulnerabilidades. O risco é alto enquanto o canal estiver permitido. Recomenda‑se contenção imediata (isolar host e bloquear destino), coleta forense (pcap/EDR) e mitigação estrutural (egress filtering, inspeção de tunneling e hardening de endpoints) para eliminar o canal e evitar perda de dados.
 
-(JSON) : "100122":"<p align=justify><b>IDENTIFICAÇÃO:</b>\n O incidente de segurança identificado envolve atividade maliciosa que utiliza túneis para ocultar outros aplicativos através de uma conexão pervasiva com vulnerabilidades conhecidas. Esse tipo de conexão permite que tráfego potencialmente malicioso seja transmitido de forma disfarçada, dificultando a detecção. Além disso, a natureza pervasiva e as vulnerabilidades associadas tornam essa conexão uma porta de entrada para possíveis ameaças de malware. A conexão permitida via protocolo aumenta o risco de exploração por atacantes, que podem utilizar essa brecha para fins de coleta de dados e outras atividades prejudiciais. \n \n <b>ETAPAS DO ATAQUE:</b>\n 1. Realize monitoramento contínuo de tráfego do protocolo para detectar atividades incomuns ou com padrões associados a tentativas de túnel.\n 2. Aplique regras de firewall para bloquear o protocolo em áreas sensíveis da rede e limitar conexões indesejadas.\n 3. Utilize segmentação de rede para isolar serviços críticos, evitando a propagação de atividades maliciosas.\n 4. Inspecione regularmente logs para identificar tentativas de tráfego oculto, garantindo detecção precoce.\n 5. Implemente verificações de integridade nos dispositivos conectados para identificar comportamentos irregulares.\n \n <b>AVALIAÇÃO:</b>\n [01] - Endereço Origem: {data:src_ip}\n [02] - Endereço Destino: {data:dst_ip}\n [03] - Ip do NAT Origem: {data:nat_source_ip}\n [04] - Ip do NAT destino: {data:nat_destination_ip}\n [05] - Aplicação: {data:application}\n [06] - Porta de Destino dos Dados: {data:dst_port}\n [07] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n [08] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n [09] - Protocolo de Rede: {data:ip_protocol}\n [10] - Verificação: {data:category}\n [11] - País de Origem dos Dados: {data:source_location}\n [12] - País de Destino dos Dados: {data:destination_location}\n [13] - Nome da Máquina Virtual: {data:virtual_system_name}\n [14] - Nome Dispositivo: {data:device_name}\n [15] - Categoria da Aplicação: {data:application_category}\n [16] - Tecnologia da Aplicação: {data:application_technology}\n [17] - Características da Aplicação: {data:application_characteristics}\n [18] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n [19] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n [20] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n [21] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n [22] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n [23] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n [24] - Tipo de IP Origem: {abuseipdb:usageType}\n [25] - ISP de Origem: {abuseipdb:isp}\n [26] - Código de País do IP de Origem: {abuseipdb:countryCode}\n \n <b>MITIGAÇÃO:</b> \n 1. Configure o firewall para bloquear tentativas de tunelamento não autorizadas e limitação de apenas funcionalidades críticas.\n 2. Fortaleça a detecção de comportamento anômalo nas redes para sinalizar atividades de ocultação de aplicativos.\n 3. Adote segmentação de rede para proteger ativos críticos e mitigar movimentos laterais de atacantes.\n 4. Aplique autenticação multifatorial em todos os pontos de acesso para impedir atividades não autorizadas.\n \n <b>CONTENÇÃO:</b> \n 1. Isolar a conexão maliciosa identificada para impedir a disseminação de atividades de ocultação.\n 2. Realizar análise detalhada de logs e dispositivos associados para garantir ausência de ameaças adicionais.\n 3. Atualizar as regras de firewall para bloquear permanentemente tentativas de tráfego não autorizado.\n \n <b>CONCLUSÃO:</b> Este incidente revela uma atividade maliciosa que utiliza túneis para ocultar outros aplicativos em uma conexão com vulnerabilidades conhecidas. Monitoramento contínuo e segmentação são fundamentais para prevenir abusos futuros e evitar riscos de exploração adicionais.</p>",
+(JSON) : "100122":"<p align=justify><b>IDENTIFICAÇÃO:</b>\nHost interno  enviou ICMP para um destino fora do Brasil. A sessão foi permitida pelo firewall e a aplicação/fluxo ICMP está marcada como uso comum de malware, vulnerabilidade conhecida e uso pervasibo com forte indício de ICMP tunneling (canal oculto) possivelmente usado para C2 ou exfiltração de arquivos.\n\n<b>ETAPAS DO ATAQUE:</b>\n01. O atacante tentará usar pacotes ICMP para enviar/receber comandos periodicamente, evitando inspeção típica de HTTP/HTTPS.\n02. O atacante pode  fragmentar dados em payloads ICMP (ping) e enviá‑los para servidor remoto.\n03. Pode haver o uso de  ICMP para mapear topologia e latência sem disparar regras focadas em TCP/UDP.\n04. Em alguns caso há a tentativa de  manter ICMP como canal secundário caso outros canais sejam bloqueados, garantindo persistência.\n\n<b>AVALIAÇÃO:</b>\n[01] - Nome Dispositivo: {data:device_name}\n[02] - Endereço Origem: {data:src_ip}\n[03] - Endereço Destino: {data:dst_ip}\n[04] - Porta de Destino dos Dados: {data:dst_port}\n[05] - Aplicação: {data:application}\n[06] - Categoria da Aplicação: {data:application_category}\n[07] - Características da Aplicação: {data:application_characteristics}\n[08] - Tecnologia da Aplicação: {data:application_technology}\n[09] - Verificação: {data:category}\n[10] - Protocolo de Rede: {data:ip_protocol}\n[11] - Ip do NAT destino: {data:nat_destination_ip}\n[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n[13] - Ip do NAT Origem: {data:nat_source_ip}\n[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n[16] - Nome da Máquina Virtual: {data:virtual_system_name}\n[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n[22] - Tipo de IP Origem: {abuseipdb:usageType}\n[23] - ISP de Origem: {abuseipdb:isp}\n[24] - Código de País do IP de Origem: {abuseipdb:countryCode}\n\n<b>MITIGAÇÃO:</b>\n01. Criar políticas de egress que permitam apenas tipos ICMP necessários (por exemplo, echo-reply para diagnóstico interno) e bloquear destino externo não autorizado.\n02. Segmentar hosts críticos e criar lista de destinos autorizados; usar egress filtering para impedir conexões diretas a IPs externos não aprovados.\n03. Garantir EDR ativo, aplicar patches e restringir processos/serviços que possam gerar ICMP com payload arbitrário.\n04. Implemente autenticação multifatorial para limitar o acesso a recursos internos e proteger dados sensíveis.\n\n<b>CONTENÇÃO:</b>\n01. Isolar o host via (VLAN de quarentena ou bloquear tráfego L3) até análise forense.\n02. Bloquear tráfego ICMP para o ip nat de destino (regra temporária no firewall) e criar bloqueio para destinos similares observados.\n03. Capturar pcap do tráfego ICMP, logs do endpoint (EDR), e históricos de firewall/SIEM antes de qualquer limpeza.\n\n<b>CONCLUSÃO:</b> O evento sugere um canal ICMP oculto potencialmente usado para comando/controle ou exfiltração, com características associadas a malware e vulnerabilidades. O risco é alto enquanto o canal estiver permitido. Recomenda‑se contenção imediata (isolar host e bloquear destino), coleta forense (pcap/EDR) e mitigação estrutural (egress filtering, inspeção de tunneling e hardening de endpoints) para eliminar o canal e evitar perda de dados.</p>",
+
 ==================================================
-Playbook gerado em: 16/09/2025 às 14:45:36
+Playbook gerado em: 21/10/2025 às 07:12:02
