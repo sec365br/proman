@@ -2,7 +2,7 @@ PLAYBOOK - 100135
 ==================================================
 
 IDENTIFICAÇÃO:
-Evento de tráfego de aplicação em porta TCP conhecida, com destino externo e com características de risco.
+Host interno  acessou um ip de destino usando DNS-over-HTTPS. Sessão foi permitida e a aplicação apresenta características como vulnerabilidades conhecidas por atacantes e Indica potencial túnel de comunicação para exfiltração de dados ou bypass de inspeção de DNS.
 
 ETAPAS DO ATAQUE:
 01. Possível envio de  consultas DNS dentro de HTTPS (porta 443), que quase sempre está liberada para navegação web.
@@ -12,32 +12,30 @@ ETAPAS DO ATAQUE:
 05. O atacante pode usar o DoH para criar um túnel de comunicação completo entre a máquina comprometida e a infraestrutura dele
 
 AVALIAÇÃO:
-[01] - Endereço Origem: {data:src_ip}
-[02] - Endereço Destino: {data:dst_ip}
-[03] - Ip do NAT Origem: {data:nat_source_ip}
-[04] - Ip do NAT destino: {data:nat_destination_ip}
+[01] - Nome Dispositivo: {data:device_name}
+[02] - Endereço Origem: {data:src_ip}
+[03] - Endereço Destino: {data:dst_ip}
+[04] - Porta de Destino dos Dados: {data:dst_port}
 [05] - Aplicação: {data:application}
-[06] - Porta de Destino dos Dados: {data:dst_port}
-[07] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
-[08] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
-[09] - Protocolo de Rede: {data:ip_protocol}
-[10] - Verificação: {data:category}
-[11] - País de Origem dos Dados: {data:source_location}
-[12] - País de Destino dos Dados: {data:destination_location}
-[13] - Nome da Máquina Virtual: {data:virtual_system_name}
-[14] - Nome Dispositivo: {data:device_name}
-[15] - Categoria da Aplicação: {data:application_category}
-[16] - Tecnologia da Aplicação: {data:application_technology}
-[17] - Características da Aplicação: {data:application_characteristics}
-[18] - Dados da Aplicação Encapsulada: {data:tunneled_application}
-[19] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
-[20] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
-[21] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
-[22] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
-[23] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
-[24] - Tipo de IP Origem: {abuseipdb:usageType}
-[25] - ISP de Origem: {abuseipdb:isp}
-[26] - Código de País do IP de Origem: {abuseipdb:countryCode}
+[06] - Categoria da Aplicação: {data:application_category}
+[07] - Características da Aplicação: {data:application_characteristics}
+[08] - Tecnologia da Aplicação: {data:application_technology}
+[09] - Verificação: {data:category}
+[10] - Protocolo de Rede: {data:ip_protocol}
+[11] - Ip do NAT destino: {data:nat_destination_ip}
+[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
+[13] - Ip do NAT Origem: {data:nat_source_ip}
+[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
+[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}
+[16] - Nome da Máquina Virtual: {data:virtual_system_name}
+[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
+[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
+[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
+[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
+[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
+[22] - Tipo de IP Origem: {abuseipdb:usageType}
+[23] - ISP de Origem: {abuseipdb:isp}
+[24] - Código de País do IP de Origem: {abuseipdb:countryCode}
 
 MITIGAÇÃO:
 01. Habilitar inspeção de tráfego HTTPS no firewall para analisar os domínios reais acessados, permitindo ver se o DoH está sendo usado para fins legítimos ou para ocultar malware/comunicação C2.
@@ -53,7 +51,7 @@ CONTENÇÃO:
 CONCLUSÃO:
 Esse evento indica tráfego de DNS over HTTPS (DoH) saindo da rede interna, mascarado por uma porta TCP conhecida, com características associadas a uso por malware e vulnerabilidades conhecidas. O host de origem foi traduzido para um IP público local e acessou um destino em outra região. O comportamento sugere possível evasão de controles de segurança e comunicação suspeita com servidor externo, exigindo análise imediata, bloqueio preventivo e contenção do host envolvido.
 
-(JSON) : "100135":"<p align=justify><b>IDENTIFICAÇÃO:</b>\n Evento de tráfego de aplicação em porta TCP conhecida, com destino externo e com características de risco. \n \n <b>ETAPAS DO ATAQUE:</b>\n 1. Possível envio de  consultas DNS dentro de HTTPS (porta 443), que quase sempre está liberada para navegação web.\n 2. Pode haver o uso de malwares instalados onde, em vez de conexões diretas suspeitas, os pedidos passam por consultas DNS criptografadas, “invisíveis” para muitos filtros.\n 3. Dados sensíveis (usuário, senha, informações do host) podem ser “fragmentados” e enviados escondidos em consultas DNS, que via DoH ficam criptografadas e difíceis de detecta\n 4. O atacante pode usar o canal DoH para baixar instruções adicionais, atualizar malware já instalado ou puxar módulos extras, sem disparar alarmes tradicionais\n 5. O atacante pode usar o DoH para criar um túnel de comunicação completo entre a máquina comprometida e a infraestrutura dele\n \n <b>AVALIAÇÃO:</b>\n [01] - Endereço Origem: {data:src_ip}\n [02] - Endereço Destino: {data:dst_ip}\n [03] - Ip do NAT Origem: {data:nat_source_ip}\n [04] - Ip do NAT destino: {data:nat_destination_ip}\n [05] - Aplicação: {data:application}\n [06] - Porta de Destino dos Dados: {data:dst_port}\n [07] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n [08] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n [09] - Protocolo de Rede: {data:ip_protocol}\n [10] - Verificação: {data:category}\n [11] - País de Origem dos Dados: {data:source_location}\n [12] - País de Destino dos Dados: {data:destination_location}\n [13] - Nome da Máquina Virtual: {data:virtual_system_name}\n [14] - Nome Dispositivo: {data:device_name}\n [15] - Categoria da Aplicação: {data:application_category}\n [16] - Tecnologia da Aplicação: {data:application_technology}\n [17] - Características da Aplicação: {data:application_characteristics}\n [18] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n [19] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n [20] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n [21] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n [22] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n [23] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n [24] - Tipo de IP Origem: {abuseipdb:usageType}\n [25] - ISP de Origem: {abuseipdb:isp}\n [26] - Código de País do IP de Origem: {abuseipdb:countryCode}\n \n <b>MITIGAÇÃO:</b> \n 1. Habilitar inspeção de tráfego HTTPS no firewall para analisar os domínios reais acessados, permitindo ver se o DoH está sendo usado para fins legítimos ou para ocultar malware/comunicação C2.\n 2. Bloquear conexões a servidores públicos de DoH conhecidos (Cloudflare, Google, etc.), caso não sejam parte da política da organização.\n 3. Criar alertas para tráfego HTTPS com destino a portas/hosts de DoH fora do padrão da organização, caso já exista, revisar/atualizar essas aplicações.\n 4. Restringir privilégios e segmentar a rede para reduzir o impacto caso um host seja comprometido.\n \n <b>CONTENÇÃO:</b> \n 1. Retirar a máquina da rede (bloquear VLAN, desconectar fisicamente ou via NAC).\n 2. Criar bloqueio imediato para o IP público (NAT) e o destino identificado.\n 3. Se o atacante já obteve acesso de usuário/serviço, revogar senhas, tokens e chaves rapidamente.\n \n <b>CONCLUSÃO:</b> Esse evento indica tráfego de DNS over HTTPS (DoH) saindo da rede interna, mascarado por uma porta TCP conhecida, com características associadas a uso por malware e vulnerabilidades conhecidas. O host de origem foi traduzido para um IP público local e acessou um destino em outra região. O comportamento sugere possível evasão de controles de segurança e comunicação suspeita com servidor externo, exigindo análise imediata, bloqueio preventivo e contenção do host envolvido.</p>",
+(JSON) : "100135":"<p align=justify><b>IDENTIFICAÇÃO:</b>\nHost interno  acessou um ip de destino usando DNS-over-HTTPS. Sessão foi permitida e a aplicação apresenta características como vulnerabilidades conhecidas por atacantes e Indica potencial túnel de comunicação para exfiltração de dados ou bypass de inspeção de DNS.\n\n<b>ETAPAS DO ATAQUE:</b>\n01. Possível envio de  consultas DNS dentro de HTTPS (porta 443), que quase sempre está liberada para navegação web.\n02. Pode haver o uso de malwares instalados onde, em vez de conexões diretas suspeitas, os pedidos passam por consultas DNS criptografadas, “invisíveis” para muitos filtros.\n03. Dados sensíveis (usuário, senha, informações do host) podem ser “fragmentados” e enviados escondidos em consultas DNS, que via DoH ficam criptografadas e difíceis de detecta\n04. O atacante pode usar o canal DoH para baixar instruções adicionais, atualizar malware já instalado ou puxar módulos extras, sem disparar alarmes tradicionais\n05. O atacante pode usar o DoH para criar um túnel de comunicação completo entre a máquina comprometida e a infraestrutura dele\n\n<b>AVALIAÇÃO:</b>\n[01] - Nome Dispositivo: {data:device_name}\n[02] - Endereço Origem: {data:src_ip}\n[03] - Endereço Destino: {data:dst_ip}\n[04] - Porta de Destino dos Dados: {data:dst_port}\n[05] - Aplicação: {data:application}\n[06] - Categoria da Aplicação: {data:application_category}\n[07] - Características da Aplicação: {data:application_characteristics}\n[08] - Tecnologia da Aplicação: {data:application_technology}\n[09] - Verificação: {data:category}\n[10] - Protocolo de Rede: {data:ip_protocol}\n[11] - Ip do NAT destino: {data:nat_destination_ip}\n[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n[13] - Ip do NAT Origem: {data:nat_source_ip}\n[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n[16] - Nome da Máquina Virtual: {data:virtual_system_name}\n[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n[22] - Tipo de IP Origem: {abuseipdb:usageType}\n[23] - ISP de Origem: {abuseipdb:isp}\n[24] - Código de País do IP de Origem: {abuseipdb:countryCode}\n\n<b>MITIGAÇÃO:</b>\n01. Habilitar inspeção de tráfego HTTPS no firewall para analisar os domínios reais acessados, permitindo ver se o DoH está sendo usado para fins legítimos ou para ocultar malware/comunicação C2.\n02. Bloquear conexões a servidores públicos de DoH conhecidos (Cloudflare, Google, etc.), caso não sejam parte da política da organização.\n03. Criar alertas para tráfego HTTPS com destino a portas/hosts de DoH fora do padrão da organização, caso já exista, revisar/atualizar essas aplicações.\n04. Restringir privilégios e segmentar a rede para reduzir o impacto caso um host seja comprometido.\n\n<b>CONTENÇÃO:</b>\n01. Retirar a máquina da rede (bloquear VLAN, desconectar fisicamente ou via NAC).\n02. Criar bloqueio imediato para o IP público (NAT) e o destino identificado.\n03. Se o atacante já obteve acesso de usuário/serviço, revogar senhas, tokens e chaves rapidamente.\n\n<b>CONCLUSÃO:</b> Esse evento indica tráfego de DNS over HTTPS (DoH) saindo da rede interna, mascarado por uma porta TCP conhecida, com características associadas a uso por malware e vulnerabilidades conhecidas. O host de origem foi traduzido para um IP público local e acessou um destino em outra região. O comportamento sugere possível evasão de controles de segurança e comunicação suspeita com servidor externo, exigindo análise imediata, bloqueio preventivo e contenção do host envolvido.</p>",
 
 ==================================================
-Playbook gerado em: 11/09/2025 às 20:42:50
+Playbook gerado em: 21/10/2025 às 07:20:48
