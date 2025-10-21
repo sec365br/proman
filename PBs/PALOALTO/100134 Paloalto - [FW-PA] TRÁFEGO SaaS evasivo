@@ -1,0 +1,55 @@
+PLAYBOOK - 100134
+==================================================
+
+IDENTIFICAÇÃO:
+O log indica que um host interno  acessou um serviço externo nomeado pela aplicação, caracterizado como uma aplicação SaaS, evasiva e de alto consumo de largura de banda. A comunicação foi permitida pela política , com destino a um servidor externo via porta (HTTPS).
+
+ETAPAS DO ATAQUE:
+01. Atacantes aproveitam protocolos cifrados e tráfego de aplicações SaaS populares para mascarar conexões de C2 (Command and Control).
+02. Arquivos ou comandos maliciosos são transmitidos via HTTPS para dificultar a inspeção e detecção por sistemas de segurança.
+03. Serviços amplamente utilizados como os que são apontado na camada de aplicação, são explorados porque geralmente não são bloqueados em redes corporativas.
+04. O atacante ou usuário mal-intencionado pode provocar congestionamento de rede, degradando o desempenho de serviços críticos.
+
+AVALIAÇÃO:
+[01] - Nome Dispositivo: {data:device_name}
+[02] - Endereço Origem: {data:src_ip}
+[03] - Endereço Destino: {data:dst_ip}
+[04] - Porta de Destino dos Dados: {data:dst_port}
+[05] - Aplicação: {data:application}
+[06] - Categoria da Aplicação: {data:application_category}
+[07] - Características da Aplicação: {data:application_characteristics}
+[08] - Tecnologia da Aplicação: {data:application_technology}
+[09] - Verificação: {data:category}
+[10] - Protocolo de Rede: {data:ip_protocol}
+[11] - Ip do NAT destino: {data:nat_destination_ip}
+[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
+[13] - Ip do NAT Origem: {data:nat_source_ip}
+[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
+[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}
+[16] - Nome da Máquina Virtual: {data:virtual_system_name}
+[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
+[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
+[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
+[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
+[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
+[22] - Tipo de IP Origem: {abuseipdb:usageType}
+[23] - ISP de Origem: {abuseipdb:isp}
+[24] - Código de País do IP de Origem: {abuseipdb:countryCode}
+
+MITIGAÇÃO:
+01. Implementar inspeção de tráfego em que se permite identificar e bloquear tráfego malicioso encapsulado em HTTPS, mesmo em aplicações evasivas.
+02. Configurar políticas que priorizem tráfego corporativo e limitem o uso de banda de aplicações recreativas ou quaisquer outros serviços.
+03. Restringir o uso de aplicações SaaS  de acordo com a necessidade do ambiente, fora de contextos justificados.
+
+CONTENÇÃO:
+01. Colocar o Saas ou aplicativos semelhantes em quarentena na rede até que políticas seguras sejam implementadas.
+02. Reduzir a capacidade de transferência de arquivos desses aplicativos e isolar o tráfego em uma VLAN controlada.
+03. Reconfigurar o firewall para aplicar limites de consumo de banda por usuário, garantindo estabilidade e priorização do tráfego essencial.
+
+CONCLUSÃO:
+O evento reflete o uso de um serviço evasivo, pervasivo e vulnerável, com alto consumo de banda, o que representa tanto um risco de segurança cibernética quanto de disponibilidade de rede.  Embora o tráfego tenha sido permitido, é recomendável revisar a política do firewall, aplicar inspeção SSL e restrições de QoS, além de monitorar o host de origem para descartar uso indevido ou comprometimento.
+
+(JSON) : "100134":"<p align=justify><b>IDENTIFICAÇÃO:</b>\nO log indica que um host interno  acessou um serviço externo nomeado pela aplicação, caracterizado como uma aplicação SaaS, evasiva e de alto consumo de largura de banda. A comunicação foi permitida pela política , com destino a um servidor externo via porta (HTTPS).\n\n<b>ETAPAS DO ATAQUE:</b>\n01. Atacantes aproveitam protocolos cifrados e tráfego de aplicações SaaS populares para mascarar conexões de C2 (Command and Control).\n02. Arquivos ou comandos maliciosos são transmitidos via HTTPS para dificultar a inspeção e detecção por sistemas de segurança.\n03. Serviços amplamente utilizados como os que são apontado na camada de aplicação, são explorados porque geralmente não são bloqueados em redes corporativas.\n04. O atacante ou usuário mal-intencionado pode provocar congestionamento de rede, degradando o desempenho de serviços críticos.\n\n<b>AVALIAÇÃO:</b>\n[01] - Nome Dispositivo: {data:device_name}\n[02] - Endereço Origem: {data:src_ip}\n[03] - Endereço Destino: {data:dst_ip}\n[04] - Porta de Destino dos Dados: {data:dst_port}\n[05] - Aplicação: {data:application}\n[06] - Categoria da Aplicação: {data:application_category}\n[07] - Características da Aplicação: {data:application_characteristics}\n[08] - Tecnologia da Aplicação: {data:application_technology}\n[09] - Verificação: {data:category}\n[10] - Protocolo de Rede: {data:ip_protocol}\n[11] - Ip do NAT destino: {data:nat_destination_ip}\n[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n[13] - Ip do NAT Origem: {data:nat_source_ip}\n[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n[16] - Nome da Máquina Virtual: {data:virtual_system_name}\n[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n[22] - Tipo de IP Origem: {abuseipdb:usageType}\n[23] - ISP de Origem: {abuseipdb:isp}\n[24] - Código de País do IP de Origem: {abuseipdb:countryCode}\n\n<b>MITIGAÇÃO:</b>\n01. Implementar inspeção de tráfego em que se permite identificar e bloquear tráfego malicioso encapsulado em HTTPS, mesmo em aplicações evasivas.\n02. Configurar políticas que priorizem tráfego corporativo e limitem o uso de banda de aplicações recreativas ou quaisquer outros serviços.\n03. Restringir o uso de aplicações SaaS  de acordo com a necessidade do ambiente, fora de contextos justificados.\n\n<b>CONTENÇÃO:</b>\n01. Colocar o Saas ou aplicativos semelhantes em quarentena na rede até que políticas seguras sejam implementadas.\n02. Reduzir a capacidade de transferência de arquivos desses aplicativos e isolar o tráfego em uma VLAN controlada.\n03. Reconfigurar o firewall para aplicar limites de consumo de banda por usuário, garantindo estabilidade e priorização do tráfego essencial.\n\n<b>CONCLUSÃO:</b> O evento reflete o uso de um serviço evasivo, pervasivo e vulnerável, com alto consumo de banda, o que representa tanto um risco de segurança cibernética quanto de disponibilidade de rede.  Embora o tráfego tenha sido permitido, é recomendável revisar a política do firewall, aplicar inspeção SSL e restrições de QoS, além de monitorar o host de origem para descartar uso indevido ou comprometimento.</p>",
+
+==================================================
+Playbook gerado em: 21/10/2025 às 17:45:24
