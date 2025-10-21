@@ -2,59 +2,54 @@ PLAYBOOK - 100116
 ==================================================
 
 IDENTIFICAÇÃO:
-A atividade registrada envolve uma conexão persistente e vulnerável com alto consumo de banda, sinalizando possíveis comportamentos evasivos, conforme detectado pelo tráfego para uma aplicação web. O incidente indicado pela regra pode refletir tentativas de burlar controles de segurança usando técnicas que exploram vulnerabilidades conhecidas. Isso sugere a intenção dos atacantes de ocultar atividades maliciosas ou de malware, potencializando o uso de largura de banda para operações que podem incluir a disseminação de malware ou exfiltração de dados. O impacto real ou potencial inclui comprometimento de dados confidenciais, violação de compliances, e possível infecção de outros sistemas na rede.
+O log indica um alto consumo de banda em uma aplicação com características associadas a comportamento evasivo e vulnerabilidades conhecidas, proveniente de um IP interno governamental. O tráfego foi permitido pelo firewall, utilizando o protocolo TCP em uma porta (HTTPS) e destino fora do Brasil, caracterizando um risco potencial de abuso de banda, evasão de políticas corporativas ou exploração de vulnerabilidade em uma aplicação SaaS.
 
 ETAPAS DO ATAQUE:
-01. Revisão e fortalecimento das políticas de segurança para detectar e bloquear tráfego suspeito.
-02. Implementação de inspeção profunda de pacotes para análise detalhada do tráfego.
-03. Atualização e rigor na aplicação das políticas de restrições baseadas em IP para prevenir abusos.
-04. Utilização de sistemas de detecção e prevenção de intrusões para responder em tempo real a ameaças.
-05. Treinamento e conscientização dos usuários sobre os riscos associados ao acesso a aplicativos de mídia de alto risco.
-06. Monitoramento contínuo e análise de comportamento de rede para identificar padrões anormais de tráfego.
+01. O atacante pode se aproveitar de aplicações populares (como YouTube ou outros serviços HTTPS) para disfarçar tráfego de Command & Control (C2) ou transferência de dados.
+02. Aplicações marcadas com vunerabilidades já conhecidas podem ser exploradas para executar código remoto, injetar scripts maliciosos ou coletar informações dos usuários conectados.
+03. O tráfego indicado com alta largura de banda consumida  pode representar tentativa de causar negação de serviço local, consumindo recursos de rede, impactando produtividade e disponibilidade.
+04. O tráfego foi permitido por uma regra ampla que pode ser usada  permitindo bypass de políticas corporativas e o uso de aplicações não sancionadas.
 
 AVALIAÇÃO:
-[01] - Endereço Origem: {data:src_ip}
-[02] - Endereço Destino: {data:dst_ip}
-[03] - Ip do NAT Origem: {data:nat_source_ip}
-[04] - Ip do NAT destino: {data:nat_destination_ip}
+[01] - Nome Dispositivo: {data:device_name}
+[02] - Endereço Origem: {data:src_ip}
+[03] - Endereço Destino: {data:dst_ip}
+[04] - Porta de Destino dos Dados: {data:dst_port}
 [05] - Aplicação: {data:application}
-[06] - Porta de Destino dos Dados: {data:dst_port}
-[07] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
-[08] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
-[09] - Protocolo de Rede: {data:ip_protocol}
-[10] - Verificação: {data:category}
-[11] - País de Origem dos Dados: {data:source_location}
-[12] - País de Destino dos Dados: {data:destination_location}
-[13] - Nome da Máquina Virtual: {data:virtual_system_name}
-[14] - Nome Dispositivo: {data:device_name}
-[15] - Categoria da Aplicação: {data:application_category}
-[16] - Tecnologia da Aplicação: {data:application_technology}
-[17] - Características da Aplicação: {data:application_characteristics}
-[18] - Dados da Aplicação Encapsulada: {data:tunneled_application}
-[19] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
-[20] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
-[21] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
-[22] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
-[23] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
-[24] - Tipo de IP Origem: {abuseipdb:usageType}
-[25] - ISP de Origem: {abuseipdb:isp}
-[26] - Código de País do IP de Origem: {abuseipdb:countryCode}
+[06] - Categoria da Aplicação: {data:application_category}
+[07] - Características da Aplicação: {data:application_characteristics}
+[08] - Tecnologia da Aplicação: {data:application_technology}
+[09] - Verificação: {data:category}
+[10] - Protocolo de Rede: {data:ip_protocol}
+[11] - Ip do NAT destino: {data:nat_destination_ip}
+[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
+[13] - Ip do NAT Origem: {data:nat_source_ip}
+[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
+[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}
+[16] - Nome da Máquina Virtual: {data:virtual_system_name}
+[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
+[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
+[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
+[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
+[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
+[22] - Tipo de IP Origem: {abuseipdb:usageType}
+[23] - ISP de Origem: {abuseipdb:isp}
+[24] - Código de País do IP de Origem: {abuseipdb:countryCode}
 
 MITIGAÇÃO:
-01. Restringir o uso de aplicações de alto risco e com vulnerabilidades conhecidas através de firewalls e listas de controle de acesso.
-02. Implementar gateways de web seguros para inspecionar e filtrar conteúdo malicioso em tráfego criptografado.
-03. Realizar atualizações regulares de firmware e software para corrigir vulnerabilidades em dispositivos e aplicações.
-04. Reforçar as configurações de segurança nos dispositivos de rede para bloquear conexões não autorizadas.
-05. Estabelecer políticas de uso aceitável para limitar o acesso a sites e aplicativos baseados em riscos associados.
+01. Usar SSL/TLS decryption para inspecionar conexões HTTPS e aplicar ferramentas de análise comportamental para detectar uso anômalo de largura de banda
+02. Garantir que EDR/antivírus e assinaturas do firewall estejam atualizados para detectar comportamentos conhecidos da aplicação
+03. Permitir apenas aplicações SaaS sancionadas e restringir o uso de mídias que não sejam essenciais para o ambiente corporativo.
 
 CONTENÇÃO:
-01. Isolamento rápido de dispositivos infectados ou comprometidos para prevenir a propagação de malware.
-02. Utilização de soluções de sandboxing para executar e testar tráfego suspeito em um ambiente controlado.
-03. Bloqueio imediato de IPs e domínios conhecidos por distribuir malware ou realizar atividades maliciosas.
+01. Colocar o host em quarentena lógica (VLAN separada) até verificar se não há presença de malware que abuse de HTTPS para comunicação externa.
+02. Reduzir o impacto de alto consumo de banda e permitir inspeção do tráfego criptografado (SSL Inspection) para identificar conteúdo suspeito.
+03. Criar uma regra no firewall para bloquear ou limitar conexões a este serviço até que a análise de vulnerabilidade seja concluída.
 
 CONCLUSÃO:
-A análise destaca a necessidade crítica de vigilância e resposta rápida a tráfegos criptografados potencialmente maliciosos. A persistência e vulnerabilidade da conexão detectada indicam tentativas de exploração de largura de banda para atividades nocivas, enfatizando a importância de estratégias proativas de segurança e conformidade regulatória para proteger a integridade da rede e dos dados.
+A aplicação apresenta comportamento evasivo e vulnerabilidades conhecidas, o que pode indicar abuso de um serviço legítimo para exfiltração de dados, evasão de políticas corporativas ou uso indevido de recursos de rede. O incidente requer bloqueio imediato da aplicação suspeita, inspeção do tráfego criptografado e verificação do endpoint de origem, a fim de garantir a integridade e disponibilidade da infraestrutura interna.
 
-(JSON) : "100116":"<p align=justify><b>IDENTIFICAÇÃO:</b>\n A atividade registrada envolve uma conexão persistente e vulnerável com alto consumo de banda, sinalizando possíveis comportamentos evasivos, conforme detectado pelo tráfego para uma aplicação web. O incidente indicado pela regra pode refletir tentativas de burlar controles de segurança usando técnicas que exploram vulnerabilidades conhecidas. Isso sugere a intenção dos atacantes de ocultar atividades maliciosas ou de malware, potencializando o uso de largura de banda para operações que podem incluir a disseminação de malware ou exfiltração de dados. O impacto real ou potencial inclui comprometimento de dados confidenciais, violação de compliances, e possível infecção de outros sistemas na rede. \n \n <b>ETAPAS DO ATAQUE:</b>\n 1. Revisão e fortalecimento das políticas de segurança para detectar e bloquear tráfego suspeito.\n 2. Implementação de inspeção profunda de pacotes para análise detalhada do tráfego.\n 3. Atualização e rigor na aplicação das políticas de restrições baseadas em IP para prevenir abusos.\n 4. Utilização de sistemas de detecção e prevenção de intrusões para responder em tempo real a ameaças.\n 5. Treinamento e conscientização dos usuários sobre os riscos associados ao acesso a aplicativos de mídia de alto risco.\n 6. Monitoramento contínuo e análise de comportamento de rede para identificar padrões anormais de tráfego.\n \n <b>AVALIAÇÃO:</b>\n [01] - Endereço Origem: {data:src_ip}\n [02] - Endereço Destino: {data:dst_ip}\n [03] - Ip do NAT Origem: {data:nat_source_ip}\n [04] - Ip do NAT destino: {data:nat_destination_ip}\n [05] - Aplicação: {data:application}\n [06] - Porta de Destino dos Dados: {data:dst_port}\n [07] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n [08] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n [09] - Protocolo de Rede: {data:ip_protocol}\n [10] - Verificação: {data:category}\n [11] - País de Origem dos Dados: {data:source_location}\n [12] - País de Destino dos Dados: {data:destination_location}\n [13] - Nome da Máquina Virtual: {data:virtual_system_name}\n [14] - Nome Dispositivo: {data:device_name}\n [15] - Categoria da Aplicação: {data:application_category}\n [16] - Tecnologia da Aplicação: {data:application_technology}\n [17] - Características da Aplicação: {data:application_characteristics}\n [18] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n [19] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n [20] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n [21] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n [22] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n [23] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n [24] - Tipo de IP Origem: {abuseipdb:usageType}\n [25] - ISP de Origem: {abuseipdb:isp}\n [26] - Código de País do IP de Origem: {abuseipdb:countryCode}\n \n <b>MITIGAÇÃO:</b> \n 1. Restringir o uso de aplicações de alto risco e com vulnerabilidades conhecidas através de firewalls e listas de controle de acesso.\n 2. Implementar gateways de web seguros para inspecionar e filtrar conteúdo malicioso em tráfego criptografado.\n 3. Realizar atualizações regulares de firmware e software para corrigir vulnerabilidades em dispositivos e aplicações.\n 4. Reforçar as configurações de segurança nos dispositivos de rede para bloquear conexões não autorizadas.\n 5. Estabelecer políticas de uso aceitável para limitar o acesso a sites e aplicativos baseados em riscos associados.\n \n <b>CONTENÇÃO:</b> \n 1. Isolamento rápido de dispositivos infectados ou comprometidos para prevenir a propagação de malware.\n 2. Utilização de soluções de sandboxing para executar e testar tráfego suspeito em um ambiente controlado.\n 3. Bloqueio imediato de IPs e domínios conhecidos por distribuir malware ou realizar atividades maliciosas.\n \n <b>CONCLUSÃO:</b> A análise destaca a necessidade crítica de vigilância e resposta rápida a tráfegos criptografados potencialmente maliciosos. A persistência e vulnerabilidade da conexão detectada indicam tentativas de exploração de largura de banda para atividades nocivas, enfatizando a importância de estratégias proativas de segurança e conformidade regulatória para proteger a integridade da rede e dos dados.</p>",
+(JSON) : "100116":"<p align=justify><b>IDENTIFICAÇÃO:</b>\nO log indica um alto consumo de banda em uma aplicação com características associadas a comportamento evasivo e vulnerabilidades conhecidas, proveniente de um IP interno governamental. O tráfego foi permitido pelo firewall, utilizando o protocolo TCP em uma porta (HTTPS) e destino fora do Brasil, caracterizando um risco potencial de abuso de banda, evasão de políticas corporativas ou exploração de vulnerabilidade em uma aplicação SaaS.\n\n<b>ETAPAS DO ATAQUE:</b>\n01. O atacante pode se aproveitar de aplicações populares (como YouTube ou outros serviços HTTPS) para disfarçar tráfego de Command & Control (C2) ou transferência de dados.\n02. Aplicações marcadas com vunerabilidades já conhecidas podem ser exploradas para executar código remoto, injetar scripts maliciosos ou coletar informações dos usuários conectados.\n03. O tráfego indicado com alta largura de banda consumida  pode representar tentativa de causar negação de serviço local, consumindo recursos de rede, impactando produtividade e disponibilidade.\n04. O tráfego foi permitido por uma regra ampla que pode ser usada  permitindo bypass de políticas corporativas e o uso de aplicações não sancionadas.\n\n<b>AVALIAÇÃO:</b>\n[01] - Nome Dispositivo: {data:device_name}\n[02] - Endereço Origem: {data:src_ip}\n[03] - Endereço Destino: {data:dst_ip}\n[04] - Porta de Destino dos Dados: {data:dst_port}\n[05] - Aplicação: {data:application}\n[06] - Categoria da Aplicação: {data:application_category}\n[07] - Características da Aplicação: {data:application_characteristics}\n[08] - Tecnologia da Aplicação: {data:application_technology}\n[09] - Verificação: {data:category}\n[10] - Protocolo de Rede: {data:ip_protocol}\n[11] - Ip do NAT destino: {data:nat_destination_ip}\n[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n[13] - Ip do NAT Origem: {data:nat_source_ip}\n[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n[16] - Nome da Máquina Virtual: {data:virtual_system_name}\n[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n[22] - Tipo de IP Origem: {abuseipdb:usageType}\n[23] - ISP de Origem: {abuseipdb:isp}\n[24] - Código de País do IP de Origem: {abuseipdb:countryCode}\n\n<b>MITIGAÇÃO:</b>\n01. Usar SSL/TLS decryption para inspecionar conexões HTTPS e aplicar ferramentas de análise comportamental para detectar uso anômalo de largura de banda\n02. Garantir que EDR/antivírus e assinaturas do firewall estejam atualizados para detectar comportamentos conhecidos da aplicação\n03. Permitir apenas aplicações SaaS sancionadas e restringir o uso de mídias que não sejam essenciais para o ambiente corporativo.\n\n<b>CONTENÇÃO:</b>\n01. Colocar o host em quarentena lógica (VLAN separada) até verificar se não há presença de malware que abuse de HTTPS para comunicação externa.\n02. Reduzir o impacto de alto consumo de banda e permitir inspeção do tráfego criptografado (SSL Inspection) para identificar conteúdo suspeito.\n03. Criar uma regra no firewall para bloquear ou limitar conexões a este serviço até que a análise de vulnerabilidade seja concluída.\n\n<b>CONCLUSÃO:</b> A aplicação apresenta comportamento evasivo e vulnerabilidades conhecidas, o que pode indicar abuso de um serviço legítimo para exfiltração de dados, evasão de políticas corporativas ou uso indevido de recursos de rede. O incidente requer bloqueio imediato da aplicação suspeita, inspeção do tráfego criptografado e verificação do endpoint de origem, a fim de garantir a integridade e disponibilidade da infraestrutura interna.</p>",
+
 ==================================================
-Playbook gerado em: 16/09/2025 às 15:08:02
+Playbook gerado em: 21/10/2025 às 06:29:26
