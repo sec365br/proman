@@ -2,42 +2,39 @@ PLAYBOOK - 100120
 ==================================================
 
 IDENTIFICAÇÃO:
-O incidente de segurança registrado envolve uma conexão pervasiva e evasiva, com alto consumo de banda, classificada como vulnerável e utilizada para tunelamento e transferência de arquivos. Essa conexão é identificada como perigosa devido ao comportamento evasivo e ao consumo elevado de largura de banda, permitindo a transferência de arquivos de forma potencialmente não autorizada e o uso de túneis para outras aplicações. Isso representa uma ameaça significativa aos sistemas internos, pois facilita o acesso a dados sensíveis e pode disseminar ameaças de forma sub-reptícia. A aplicação detectada, permitida nesta conexão, pode camuflar atividade maliciosa, apresentando um risco real de comprometimento dos sistemas.
+Host interno  fez conexão HTTP para um ip externo usando ms-update. A aplicação está marcada como comportamento evasivo,alto consumo de banda, possibilidade de transferência de arquivo, e possivelmente tem uma vulnerabilidade conhecida, indicando possível túnel criptografado/encapsulado para transferência de arquivos (exfiltração) ou canal C2 disfarçado como atualização de software. Tráfego foi permitido pelo firewall.
 
 ETAPAS DO ATAQUE:
-01. Monitore o tráfego de alto consumo de banda e comportamento evasivo para identificar tentativas de tunelamento e transferências suspeitas.
-02. Implemente regras de firewall para bloquear conexões de aplicações que demandem alta largura de banda sem autorização.
-03. Realize auditorias periódicas dos logs de rede para identificar tráfego irregular e potenciais ameaças.
-04. Utilize segmentação de rede para isolar dados críticos e dificultar o acesso por conexões inseguras.
-05. Ative a verificação em duas etapas para serviços externos, minimizando o risco de comprometer sistemas internos.
+01. Túnel de exfiltração usando canal de atualização ao encapsular dados sensíveis em pacotes que parecem atualizações legítimas (ms-update) e enviá-los para servidor externo.
+02. O atacante pode estabelecer comunicação periódica com servidor externo para receber comandos, mantendo fluxo de baixa/alta largura conforme necessidade.
+03. Pode haver o uso de alta largura de banda para mascarar transferência ao enviar grandes quantidades de dados durante janelas de operação para dificultar detecção por anomalia de bytes.
+04. Em alguns caso há a exploração de vulnerabilidade de atualização ao forçar download/execução de payload via mecanismo que se passa por atualizador usando exploits.
 
 AVALIAÇÃO:
-[01] - Endereço Origem: {data:src_ip}
-[02] - Endereço Destino: {data:dst_ip}
-[03] - Ip do NAT Origem: {data:nat_source_ip}
-[04] - Ip do NAT destino: {data:nat_destination_ip}
+[01] - Nome Dispositivo: {data:device_name}
+[02] - Endereço Origem: {data:src_ip}
+[03] - Endereço Destino: {data:dst_ip}
+[04] - Porta de Destino dos Dados: {data:dst_port}
 [05] - Aplicação: {data:application}
-[06] - Porta de Destino dos Dados: {data:dst_port}
-[07] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
-[08] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
-[09] - Protocolo de Rede: {data:ip_protocol}
-[10] - Verificação: {data:category}
-[11] - País de Origem dos Dados: {data:countryCode}
-[12] - País de Destino dos Dados: {data:destination_location}
-[13] - Nome da Máquina Virtual: {data:virtual_system_name}
-[14] - Nome Dispositivo: {data:device_name}
-[15] - Categoria da Aplicação: {data:application_category}
-[16] - Tecnologia da Aplicação: {data:application_technology}
-[17] - Características da Aplicação: {data:application_characteristics}
-[18] - Dados da Aplicação Encapsulada: {data:tunneled_application}
-[19] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
-[20] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
-[21] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
-[22] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
-[23] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
-[24] - Tipo de IP Origem: {abuseipdb:usageType}
-[25] - ISP de Origem: {abuseipdb:isp}
-[26] - Código de País do IP de Origem: {abuseipdb:countryCode}
+[06] - Categoria da Aplicação: {data:application_category}
+[07] - Características da Aplicação: {data:application_characteristics}
+[08] - Tecnologia da Aplicação: {data:application_technology}
+[09] - Verificação: {data:category}
+[10] - Protocolo de Rede: {data:ip_protocol}
+[11] - Ip do NAT destino: {data:nat_destination_ip}
+[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
+[13] - Ip do NAT Origem: {data:nat_source_ip}
+[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
+[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}
+[16] - Nome da Máquina Virtual: {data:virtual_system_name}
+[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
+[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
+[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
+[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
+[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
+[22] - Tipo de IP Origem: {abuseipdb:usageType}
+[23] - ISP de Origem: {abuseipdb:isp}
+[24] - Código de País do IP de Origem: {abuseipdb:countryCode}
 
 MITIGAÇÃO:
 01. Configure políticas para bloquear tentativas de tunelamento e reduzir o risco de acesso não autorizado.
@@ -53,6 +50,7 @@ CONTENÇÃO:
 CONCLUSÃO:
 Este incidente destaca uma conexão vulnerável e evasiva com potencial para transferência e tunelamento de arquivos. Medidas de segmentação e monitoramento são essenciais para detectar e conter tráfego de alto risco, prevenindo futuros abusos e ataques direcionados.
 
-(JSON) : "100120":"<p align=justify><b>IDENTIFICAÇÃO:</b>\n O incidente de segurança registrado envolve uma conexão pervasiva e evasiva, com alto consumo de banda, classificada como vulnerável e utilizada para tunelamento e transferência de arquivos. Essa conexão é identificada como perigosa devido ao comportamento evasivo e ao consumo elevado de largura de banda, permitindo a transferência de arquivos de forma potencialmente não autorizada e o uso de túneis para outras aplicações. Isso representa uma ameaça significativa aos sistemas internos, pois facilita o acesso a dados sensíveis e pode disseminar ameaças de forma sub-reptícia. A aplicação detectada, permitida nesta conexão, pode camuflar atividade maliciosa, apresentando um risco real de comprometimento dos sistemas. \n \n <b>ETAPAS DO ATAQUE:</b>\n 1. Monitore o tráfego de alto consumo de banda e comportamento evasivo para identificar tentativas de tunelamento e transferências suspeitas.\n 2. Implemente regras de firewall para bloquear conexões de aplicações que demandem alta largura de banda sem autorização.\n 3. Realize auditorias periódicas dos logs de rede para identificar tráfego irregular e potenciais ameaças.\n 4. Utilize segmentação de rede para isolar dados críticos e dificultar o acesso por conexões inseguras.\n 5. Ative a verificação em duas etapas para serviços externos, minimizando o risco de comprometer sistemas internos.\n \n <b>AVALIAÇÃO:</b>\n [01] - Endereço Origem: {data:src_ip}\n [02] - Endereço Destino: {data:dst_ip}\n [03] - Ip do NAT Origem: {data:nat_source_ip}\n [04] - Ip do NAT destino: {data:nat_destination_ip}\n [05] - Aplicação: {data:application}\n [06] - Porta de Destino dos Dados: {data:dst_port}\n [07] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n [08] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n [09] - Protocolo de Rede: {data:ip_protocol}\n [10] - Verificação: {data:category}\n [11] - País de Origem dos Dados: {data:source_location}\n [12] - País de Destino dos Dados: {data:destination_location}\n [13] - Nome da Máquina Virtual: {data:virtual_system_name}\n [14] - Nome Dispositivo: {data:device_name}\n [15] - Categoria da Aplicação: {data:application_category}\n [16] - Tecnologia da Aplicação: {data:application_technology}\n [17] - Características da Aplicação: {data:application_characteristics}\n [18] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n [19] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n [20] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n [21] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n [22] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n [23] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n [24] - Tipo de IP Origem: {abuseipdb:usageType}\n [25] - ISP de Origem: {abuseipdb:isp}\n [26] - Código de País do IP de Origem: {abuseipdb:countryCode}\n \n <b>MITIGAÇÃO:</b> \n 1. Configure políticas para bloquear tentativas de tunelamento e reduzir o risco de acesso não autorizado.\n 2. Fortaleça a detecção de ameaças em rede, aplicando inspeção de tráfego para comportamentos evasivos.\n 3. Estabeleça segmentação de rede que limite o acesso a dados sensíveis para reduzir o impacto de possíveis incidentes.\n 4. Implemente autenticação multifatorial para limitar o acesso a recursos internos e proteger dados sensíveis.\n \n <b>CONTENÇÃO:</b> \n 1. Isolar temporariamente a rede impactada para interromper a disseminação de potenciais ameaças.\n 2. Executar auditorias para identificar padrões de tráfego e usuários comprometidos, garantindo a segurança de dispositivos.\n 3. Aplicar atualizações de segurança para eliminar vulnerabilidades exploráveis.\n \n <b>CONCLUSÃO:</b> Este incidente destaca uma conexão vulnerável e evasiva com potencial para transferência e tunelamento de arquivos. Medidas de segmentação e monitoramento são essenciais para detectar e conter tráfego de alto risco, prevenindo futuros abusos e ataques direcionados.</p>",
+(JSON) : "100120":"<p align=justify><b>IDENTIFICAÇÃO:</b>\nHost interno  fez conexão HTTP para um ip externo usando ms-update. A aplicação está marcada como comportamento evasivo,alto consumo de banda, possibilidade de transferência de arquivo, e possivelmente tem uma vulnerabilidade conhecida, indicando possível túnel criptografado/encapsulado para transferência de arquivos (exfiltração) ou canal C2 disfarçado como atualização de software. Tráfego foi permitido pelo firewall.\n\n<b>ETAPAS DO ATAQUE:</b>\n01. Túnel de exfiltração usando canal de atualização ao encapsular dados sensíveis em pacotes que parecem atualizações legítimas (ms-update) e enviá-los para servidor externo.\n02. O atacante pode estabelecer comunicação periódica com servidor externo para receber comandos, mantendo fluxo de baixa/alta largura conforme necessidade.\n03. Pode haver o uso de alta largura de banda para mascarar transferência ao enviar grandes quantidades de dados durante janelas de operação para dificultar detecção por anomalia de bytes.\n04. Em alguns caso há a exploração de vulnerabilidade de atualização ao forçar download/execução de payload via mecanismo que se passa por atualizador usando exploits.\n\n<b>AVALIAÇÃO:</b>\n[01] - Nome Dispositivo: {data:device_name}\n[02] - Endereço Origem: {data:src_ip}\n[03] - Endereço Destino: {data:dst_ip}\n[04] - Porta de Destino dos Dados: {data:dst_port}\n[05] - Aplicação: {data:application}\n[06] - Categoria da Aplicação: {data:application_category}\n[07] - Características da Aplicação: {data:application_characteristics}\n[08] - Tecnologia da Aplicação: {data:application_technology}\n[09] - Verificação: {data:category}\n[10] - Protocolo de Rede: {data:ip_protocol}\n[11] - Ip do NAT destino: {data:nat_destination_ip}\n[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n[13] - Ip do NAT Origem: {data:nat_source_ip}\n[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n[16] - Nome da Máquina Virtual: {data:virtual_system_name}\n[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n[22] - Tipo de IP Origem: {abuseipdb:usageType}\n[23] - ISP de Origem: {abuseipdb:isp}\n[24] - Código de País do IP de Origem: {abuseipdb:countryCode}\n\n<b>MITIGAÇÃO:</b>\n01. Configure políticas para bloquear tentativas de tunelamento e reduzir o risco de acesso não autorizado.\n02. Fortaleça a detecção de ameaças em rede, aplicando inspeção de tráfego para comportamentos evasivos.\n03. Estabeleça segmentação de rede que limite o acesso a dados sensíveis para reduzir o impacto de possíveis incidentes.\n04. Implemente autenticação multifatorial para limitar o acesso a recursos internos e proteger dados sensíveis.\n\n<b>CONTENÇÃO:</b>\n01. Isolar temporariamente a rede impactada para interromper a disseminação de potenciais ameaças.\n02. Executar auditorias para identificar padrões de tráfego e usuários comprometidos, garantindo a segurança de dispositivos.\n03. Aplicar atualizações de segurança para eliminar vulnerabilidades exploráveis.\n\n<b>CONCLUSÃO:</b> Este incidente destaca uma conexão vulnerável e evasiva com potencial para transferência e tunelamento de arquivos. Medidas de segmentação e monitoramento são essenciais para detectar e conter tráfego de alto risco, prevenindo futuros abusos e ataques direcionados.</p>",
+
 ==================================================
-Playbook gerado em: 11/09/2025 às 20:08:01
+Playbook gerado em: 21/10/2025 às 06:53:27
