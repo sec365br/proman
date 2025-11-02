@@ -1,0 +1,55 @@
+PLAYBOOK - 100113
+==================================================
+
+IDENTIFICAÇÃO:
+O log indica que o firewall permitiu tráfego HTTPS  entre o host interno  e  externo a partir de uma aplicação conhecida. Embora o destino seja legítimo, a aplicação está associada a vulnerabilidades conhecidas, capacidade de transferência de arquivos e alto consumo de banda. Apresentando possivel canal para exfiltração de dados.
+
+ETAPAS DO ATAQUE:
+01. O atacante pode usar o canal HTTPS da aplicação para enviar dados sensíveis para fora da rede sem detecção, já que o tráfego parece legítimo.
+02. O atacante pode explorar aplicativos ou atualizações em versões falsificadas, instalando código malicioso em endpoints da rede.
+03. Um alto consumo de banda pode ser usado como cobertura para atividades paralelas, dificultando a detecção de conexões C2 (Command and Control).
+04. Um sistema comprometido pode utilizar essa conexão para receber instruções externas, baixar ferramentas adicionais e se propagar pela rede interna.
+
+AVALIAÇÃO:
+[01] - Nome Dispositivo: {data:device_name}
+[02] - Endereço Origem: {data:src_ip}
+[03] - Endereço Destino: {data:dst_ip}
+[04] - Porta de Destino dos Dados: {data:dst_port}
+[05] - Aplicação: {data:application}
+[06] - Categoria da Aplicação: {data:application_category}
+[07] - Características da Aplicação: {data:application_characteristics}
+[08] - Tecnologia da Aplicação: {data:application_technology}
+[09] - Verificação: {data:category}
+[10] - Protocolo de Rede: {data:ip_protocol}
+[11] - Ip do NAT destino: {data:nat_destination_ip}
+[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
+[13] - Ip do NAT Origem: {data:nat_source_ip}
+[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
+[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}
+[16] - Nome da Máquina Virtual: {data:virtual_system_name}
+[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
+[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
+[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
+[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
+[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
+[22] - Tipo de IP Origem: {abuseipdb:usageType}
+[23] - ISP de Origem: {abuseipdb:isp}
+[24] - Código de País do IP de Origem: {abuseipdb:countryCode}
+
+MITIGAÇÃO:
+01. Restringir ou monitorar o uso de aplicativos conhecidos, e altamente usados em redes corporativas ou educacionais. Além de definir  políticas que bloqueiem downloads de arquivos executáveis ou pacotes suspeitos.
+02. Permite analisar o conteúdo do tráfego HTTPS e detectar comportamentos anômalos ou downloads de arquivos maliciosos mascarados como legítimos.
+03. Limitar o uso de largura de banda por aplicações não essenciais, evitando saturação e dificultando a movimentação de grandes volumes de dados (típicos em exfiltrações).
+
+CONTENÇÃO:
+01. Bloquear temporariamente o tráfego para a aplicação em redes sensíveis, até que uma análise confirme que o uso é legítimo.
+02. Verificar o endpoint de origem para garantir que não haja softwares de terceiros realizando transferências automáticas de dados (por exemplo, malware disfarçado de serviço legítimo).
+03. Ativar regras do Web Application Firewall ou criar um virtual patch (regra temporária) que bloqueie os padrões de ataque/exploit conhecidos contra o serviço alvo
+
+CONCLUSÃO:
+O log evidencia um tráfego aparentemente legítimo, mas com características de risco elevado, envolvendo transferência de arquivos e vulnerabilidades conhecidas. Apesar de o destino ser confiável, a falta de sanção da aplicação e o consumo de banda requerem uma resposta imediata e revisão de políticas de segurança, a fim de evitar exploração indevida do ambiente e vazamento de dados
+
+(JSON) : "100113":"<p align=justify><b>IDENTIFICAÇÃO:</b>\nO log indica que o firewall permitiu tráfego HTTPS  entre o host interno  e  externo a partir de uma aplicação conhecida. Embora o destino seja legítimo, a aplicação está associada a vulnerabilidades conhecidas, capacidade de transferência de arquivos e alto consumo de banda. Apresentando possivel canal para exfiltração de dados.\n\n<b>ETAPAS DO ATAQUE:</b>\n01. O atacante pode usar o canal HTTPS da aplicação para enviar dados sensíveis para fora da rede sem detecção, já que o tráfego parece legítimo.\n02. O atacante pode explorar aplicativos ou atualizações em versões falsificadas, instalando código malicioso em endpoints da rede.\n03. Um alto consumo de banda pode ser usado como cobertura para atividades paralelas, dificultando a detecção de conexões C2 (Command and Control).\n04. Um sistema comprometido pode utilizar essa conexão para receber instruções externas, baixar ferramentas adicionais e se propagar pela rede interna.\n\n<b>AVALIAÇÃO:</b>\n[01] - Nome Dispositivo: {data:device_name}\n[02] - Endereço Origem: {data:src_ip}\n[03] - Endereço Destino: {data:dst_ip}\n[04] - Porta de Destino dos Dados: {data:dst_port}\n[05] - Aplicação: {data:application}\n[06] - Categoria da Aplicação: {data:application_category}\n[07] - Características da Aplicação: {data:application_characteristics}\n[08] - Tecnologia da Aplicação: {data:application_technology}\n[09] - Verificação: {data:category}\n[10] - Protocolo de Rede: {data:ip_protocol}\n[11] - Ip do NAT destino: {data:nat_destination_ip}\n[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n[13] - Ip do NAT Origem: {data:nat_source_ip}\n[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n[16] - Nome da Máquina Virtual: {data:virtual_system_name}\n[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n[22] - Tipo de IP Origem: {abuseipdb:usageType}\n[23] - ISP de Origem: {abuseipdb:isp}\n[24] - Código de País do IP de Origem: {abuseipdb:countryCode}\n\n<b>MITIGAÇÃO:</b>\n01. Restringir ou monitorar o uso de aplicativos conhecidos, e altamente usados em redes corporativas ou educacionais. Além de definir  políticas que bloqueiem downloads de arquivos executáveis ou pacotes suspeitos.\n02. Permite analisar o conteúdo do tráfego HTTPS e detectar comportamentos anômalos ou downloads de arquivos maliciosos mascarados como legítimos.\n03. Limitar o uso de largura de banda por aplicações não essenciais, evitando saturação e dificultando a movimentação de grandes volumes de dados (típicos em exfiltrações).\n\n<b>CONTENÇÃO:</b>\n01. Bloquear temporariamente o tráfego para a aplicação em redes sensíveis, até que uma análise confirme que o uso é legítimo.\n02. Verificar o endpoint de origem para garantir que não haja softwares de terceiros realizando transferências automáticas de dados (por exemplo, malware disfarçado de serviço legítimo).\n03. Ativar regras do Web Application Firewall ou criar um virtual patch (regra temporária) que bloqueie os padrões de ataque/exploit conhecidos contra o serviço alvo\n\n<b>CONCLUSÃO:</b> O log evidencia um tráfego aparentemente legítimo, mas com características de risco elevado, envolvendo transferência de arquivos e vulnerabilidades conhecidas. Apesar de o destino ser confiável, a falta de sanção da aplicação e o consumo de banda requerem uma resposta imediata e revisão de políticas de segurança, a fim de evitar exploração indevida do ambiente e vazamento de dados</p>",
+
+==================================================
+Playbook gerado em: 31/10/2025 às 00:51:38
