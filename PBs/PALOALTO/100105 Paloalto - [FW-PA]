@@ -1,0 +1,55 @@
+PLAYBOOK - 100105
+==================================================
+
+IDENTIFICAÇÃO:
+O incidente de segurança identificado envolve uma conexão pervasiva permitida através do firewall, que utiliza uma aplicação. Essa conexão apresenta uma vulnerabilidade conhecida e pode ser explorada por malware.
+
+ETAPAS DO ATAQUE:
+01. O atacante pode reutilizar serviços legítimos (CDNs, buscadores, serviços cloud) como intermediários para esconder atividade.
+02. Usar ping para mapear redes internas, identificar hosts ativos e coletar informações sobre firewalls e roteadores.
+03. Manter canais de controle de malware via ICMP tunelado, permitindo que um invasor envie comandos ou receba dados sem levantar suspeita.
+04. O atacnte pode implementar uma gente que seja capaz de dividir o conteúdo exfiltrado em blocos, encapsular cada bloco em pacotes e alterar o encode para evitar identificação.
+
+AVALIAÇÃO:
+[01] - Nome Dispositivo: {data:device_name}
+[02] - Endereço Origem: {data:src_ip}
+[03] - Endereço Destino: {data:dst_ip}
+[04] - Porta de Destino dos Dados: {data:dst_port}
+[05] - Aplicação: {data:application}
+[06] - Categoria da Aplicação: {data:application_category}
+[07] - Características da Aplicação: {data:application_characteristics}
+[08] - Tecnologia da Aplicação: {data:application_technology}
+[09] - Verificação: {data:category}
+[10] - Protocolo de Rede: {data:ip_protocol}
+[11] - Ip do NAT destino: {data:nat_destination_ip}
+[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
+[13] - Ip do NAT Origem: {data:nat_source_ip}
+[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
+[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}
+[16] - Nome da Máquina Virtual: {data:virtual_system_name}
+[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
+[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
+[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
+[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
+[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
+[22] - Tipo de IP Origem: {abuseipdb:usageType}
+[23] - ISP de Origem: {abuseipdb:isp}
+[24] - Código de País do IP de Origem: {abuseipdb:countryCode}
+
+MITIGAÇÃO:
+01. Garantir que todos os sistemas e dispositivos estejam atualizados para corrigir falhas conhecidas que possam ser exploradas por tráfego ICMP tunelado.
+02. Restringir o tráfego de ICMP entre redes internas e externas para apenas endereços e serviços essenciais.
+03. Implementar inspeção de tráfego para identificar padrões de tunelamento ou comunicações ocultas em protocolos aparentemente inofensivos.
+
+CONTENÇÃO:
+01. Bloquear IPs externos não confiáveis, especialmente localizados em regiões de alto risco, mantendo apenas destinos necessários para operações.
+02. Restringir o volume de pacotes ICMP permitidos para reduzir possíveis abusos de tunelamento ou ataques de negação de serviço (DoS).
+03. Encerrar imediatamente as sessões no firewall, revogar o mapeamento NAT associado e aplicar um bloqueio temporário da aplicação/origem via orquestrador tudo em cadeia para interromper comunicação e impedir reconexão automática.
+
+CONCLUSÃO:
+O evento demonstra que tráfego aparentemente legítimo (ping/ICMP) pode ser explorado como vetor para atividades maliciosas por meio de tunelamento, aproveitando vulnerabilidades conhecidas e uso pervasivo. Embora permitido por política de firewall, há risco de exfiltração de dados, comunicação oculta com servidores externos e ataques de reconhecimento.
+
+(JSON) : "100105":"<p align=justify><b>IDENTIFICAÇÃO:</b>\nO incidente de segurança identificado envolve uma conexão pervasiva permitida através do firewall, que utiliza uma aplicação. Essa conexão apresenta uma vulnerabilidade conhecida e pode ser explorada por malware.\n\n<b>ETAPAS DO ATAQUE:</b>\n01. O atacante pode reutilizar serviços legítimos (CDNs, buscadores, serviços cloud) como intermediários para esconder atividade.\n02. Usar ping para mapear redes internas, identificar hosts ativos e coletar informações sobre firewalls e roteadores.\n03. Manter canais de controle de malware via ICMP tunelado, permitindo que um invasor envie comandos ou receba dados sem levantar suspeita.\n04. O atacnte pode implementar uma gente que seja capaz de dividir o conteúdo exfiltrado em blocos, encapsular cada bloco em pacotes e alterar o encode para evitar identificação.\n\n<b>AVALIAÇÃO:</b>\n[01] - Nome Dispositivo: {data:device_name}\n[02] - Endereço Origem: {data:src_ip}\n[03] - Endereço Destino: {data:dst_ip}\n[04] - Porta de Destino dos Dados: {data:dst_port}\n[05] - Aplicação: {data:application}\n[06] - Categoria da Aplicação: {data:application_category}\n[07] - Características da Aplicação: {data:application_characteristics}\n[08] - Tecnologia da Aplicação: {data:application_technology}\n[09] - Verificação: {data:category}\n[10] - Protocolo de Rede: {data:ip_protocol}\n[11] - Ip do NAT destino: {data:nat_destination_ip}\n[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n[13] - Ip do NAT Origem: {data:nat_source_ip}\n[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n[16] - Nome da Máquina Virtual: {data:virtual_system_name}\n[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n[22] - Tipo de IP Origem: {abuseipdb:usageType}\n[23] - ISP de Origem: {abuseipdb:isp}\n[24] - Código de País do IP de Origem: {abuseipdb:countryCode}\n\n<b>MITIGAÇÃO:</b>\n01. Garantir que todos os sistemas e dispositivos estejam atualizados para corrigir falhas conhecidas que possam ser exploradas por tráfego ICMP tunelado.\n02. Restringir o tráfego de ICMP entre redes internas e externas para apenas endereços e serviços essenciais.\n03. Implementar inspeção de tráfego para identificar padrões de tunelamento ou comunicações ocultas em protocolos aparentemente inofensivos.\n\n<b>CONTENÇÃO:</b>\n01. Bloquear IPs externos não confiáveis, especialmente localizados em regiões de alto risco, mantendo apenas destinos necessários para operações.\n02. Restringir o volume de pacotes ICMP permitidos para reduzir possíveis abusos de tunelamento ou ataques de negação de serviço (DoS).\n03. Encerrar imediatamente as sessões no firewall, revogar o mapeamento NAT associado e aplicar um bloqueio temporário da aplicação/origem via orquestrador tudo em cadeia para interromper comunicação e impedir reconexão automática.\n\n<b>CONCLUSÃO:</b> O evento demonstra que tráfego aparentemente legítimo (ping/ICMP) pode ser explorado como vetor para atividades maliciosas por meio de tunelamento, aproveitando vulnerabilidades conhecidas e uso pervasivo. Embora permitido por política de firewall, há risco de exfiltração de dados, comunicação oculta com servidores externos e ataques de reconhecimento.</p>",
+
+==================================================
+Playbook gerado em: 02/11/2025 às 11:09:30
