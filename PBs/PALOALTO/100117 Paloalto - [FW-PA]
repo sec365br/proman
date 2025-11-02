@@ -1,0 +1,54 @@
+PLAYBOOK - 100117
+==================================================
+
+IDENTIFICAÇÃO:
+Foi identificado um caso onde a aplicação marcou que existem vulnerabilidades conhecidas ou possibilidade de abuso. A aplicação não sancionada indica que a politica não aprovou, também sugere  um identificador possivelmente defasado ou limitado. Tal cenário apresenta vulnerabilidades conhecidas e há a capacidade de exfiltração e tranferência de arquivos.
+
+ETAPAS DO ATAQUE:
+01. O atacante pode compactar/obfuscar dados sensíveis e realizar upload para uma pasta controlada pelo atacante (ou conta externa). por ser algo considerado legítimo o  firewall permite, então uploads passam sem inspeção se TLS não for decriptado.
+02. Em alguns cenérios o atacante escreve pequenos arquivos texto JSON/CSV com instruções para clientes infectados; cliente polled faz download e executa ações.
+03. O atacante pode fazer upload de arquivos confidenciais e criação de link de compartilhamento público; depois o atacante usa link para distribuir por e-mail ou hostear payloads para fases posteriores.
+
+AVALIAÇÃO:
+[01] - Nome Dispositivo: {data:device_name}
+[02] - Endereço Origem: {data:src_ip}
+[03] - Endereço Destino: {data:dst_ip}
+[04] - Porta de Destino dos Dados: {data:dst_port}
+[05] - Aplicação: {data:application}
+[06] - Categoria da Aplicação: {data:application_category}
+[07] - Características da Aplicação: {data:application_characteristics}
+[08] - Tecnologia da Aplicação: {data:application_technology}
+[09] - Verificação: {data:category}
+[10] - Protocolo de Rede: {data:ip_protocol}
+[11] - Ip do NAT destino: {data:nat_destination_ip}
+[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
+[13] - Ip do NAT Origem: {data:nat_source_ip}
+[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
+[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}
+[16] - Nome da Máquina Virtual: {data:virtual_system_name}
+[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
+[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
+[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
+[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
+[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
+[22] - Tipo de IP Origem: {abuseipdb:usageType}
+[23] - ISP de Origem: {abuseipdb:isp}
+[24] - Código de País do IP de Origem: {abuseipdb:countryCode}
+
+MITIGAÇÃO:
+01. Habilitar SSL/TLS decryption para tráfego para aplicações SaaS críticas (ou, se não possível globalmente, para destinos das aplicações de risco) e ampliar Threat Prevention com assinatura atualizada.
+02. Descobrir instâncias não sancionadas e aplicar políticas de block upload, quarantine, OAuth token revocation para aplicações não sancionadas.
+03. Habilitar Endpoint Detection and Response (EDR) com detecções específicas e monitorar processos executáveis da aplicação que invocam cmd.exe/powershell ou escrevem para diretórios sensíveis. Criar regra EDR para isolar automaticamente host quando comportamento anômalo detectado.
+
+CONTENÇÃO:
+01. Evitar movimento lateral e preserva evidências colocando o host em quarentena em uma VLAN além de gerar forensic snapshot (memória, disco, eventos)..
+02. Cortar acesso se o token malicioso estiver em uso e impede novas conexões autenticadas bloqueando temporariamente sincronização da aplicação para esse usuário.
+03. Interrompe canal de exfil/uso C2 enquanto captura evidências para análise.
+
+CONCLUSÃO:
+O log mostra um host interno usando um serviço não sancionado, com ids, indicando vulnerabilidade conhecida e capacidade de transferência de arquivos. O tráfego foi permitido por política de internet, e houve repetição. Há risco real de exfiltração de dados ou de uso da aplicação como canal C2 ou vetor de entrega/execução por vulnerabilidade no cliente.
+
+(JSON) : "100117":"<p align=justify><b>IDENTIFICAÇÃO:</b>\nFoi identificado um caso onde a aplicação marcou que existem vulnerabilidades conhecidas ou possibilidade de abuso. A aplicação não sancionada indica que a politica não aprovou, também sugere  um identificador possivelmente defasado ou limitado. Tal cenário apresenta vulnerabilidades conhecidas e há a capacidade de exfiltração e tranferência de arquivos.\n\n<b>ETAPAS DO ATAQUE:</b>\n01. O atacante pode compactar/obfuscar dados sensíveis e realizar upload para uma pasta controlada pelo atacante (ou conta externa). por ser algo considerado legítimo o  firewall permite, então uploads passam sem inspeção se TLS não for decriptado.\n02. Em alguns cenérios o atacante escreve pequenos arquivos texto JSON/CSV com instruções para clientes infectados; cliente polled faz download e executa ações.\n03. O atacante pode fazer upload de arquivos confidenciais e criação de link de compartilhamento público; depois o atacante usa link para distribuir por e-mail ou hostear payloads para fases posteriores.\n\n<b>AVALIAÇÃO:</b>\n[01] - Nome Dispositivo: {data:device_name}\n[02] - Endereço Origem: {data:src_ip}\n[03] - Endereço Destino: {data:dst_ip}\n[04] - Porta de Destino dos Dados: {data:dst_port}\n[05] - Aplicação: {data:application}\n[06] - Categoria da Aplicação: {data:application_category}\n[07] - Características da Aplicação: {data:application_characteristics}\n[08] - Tecnologia da Aplicação: {data:application_technology}\n[09] - Verificação: {data:category}\n[10] - Protocolo de Rede: {data:ip_protocol}\n[11] - Ip do NAT destino: {data:nat_destination_ip}\n[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n[13] - Ip do NAT Origem: {data:nat_source_ip}\n[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n[16] - Nome da Máquina Virtual: {data:virtual_system_name}\n[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n[22] - Tipo de IP Origem: {abuseipdb:usageType}\n[23] - ISP de Origem: {abuseipdb:isp}\n[24] - Código de País do IP de Origem: {abuseipdb:countryCode}\n\n<b>MITIGAÇÃO:</b>\n01. Habilitar SSL/TLS decryption para tráfego para aplicações SaaS críticas (ou, se não possível globalmente, para destinos das aplicações de risco) e ampliar Threat Prevention com assinatura atualizada.\n02. Descobrir instâncias não sancionadas e aplicar políticas de block upload, quarantine, OAuth token revocation para aplicações não sancionadas.\n03. Habilitar Endpoint Detection and Response (EDR) com detecções específicas e monitorar processos executáveis da aplicação que invocam cmd.exe/powershell ou escrevem para diretórios sensíveis. Criar regra EDR para isolar automaticamente host quando comportamento anômalo detectado.\n\n<b>CONTENÇÃO:</b>\n01. Evitar movimento lateral e preserva evidências colocando o host em quarentena em uma VLAN além de gerar forensic snapshot (memória, disco, eventos)..\n02. Cortar acesso se o token malicioso estiver em uso e impede novas conexões autenticadas bloqueando temporariamente sincronização da aplicação para esse usuário.\n03. Interrompe canal de exfil/uso C2 enquanto captura evidências para análise.\n\n<b>CONCLUSÃO:</b> O log mostra um host interno usando um serviço não sancionado, com ids, indicando vulnerabilidade conhecida e capacidade de transferência de arquivos. O tráfego foi permitido por política de internet, e houve repetição. Há risco real de exfiltração de dados ou de uso da aplicação como canal C2 ou vetor de entrega/execução por vulnerabilidade no cliente.</p>",
+
+==================================================
+Playbook gerado em: 02/11/2025 às 11:40:39
