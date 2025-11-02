@@ -1,0 +1,55 @@
+PLAYBOOK - 100109
+==================================================
+
+IDENTIFICAÇÃO:
+Uma conexão, apesar de criptografada, pode ser utilizada para transferir arquivos maliciosos ou criar túneis para ocultar atividades maliciosas. Este playbook aborda a detecção e resposta a uma conexão com essas características, detectada pelo firewall e classificada.
+
+ETAPAS DO ATAQUE:
+01. O atacante pode usar o tráfego HTTPS  para transferir dados sigilosos da rede interna, aproveitando o anonimato do canal cifrado.
+02. O atacante pode abusar de explorações conhecidas em bibliotecas da aplicação em questão ou APIs associadas podem permitir execução remota de código ou injeção de scripts.
+03. Caso o atacante tenha acesso inicial ao host interno, pode usar esse tipo de tráfego permitido para enviar payloads ou comandos, mantendo persistência sem gerar alertas diretos.
+04. O atacante pode fragmentar ou escalonar transferências (pequenos envios frequentes) para evitar alertas por picos de banda e comunicar-se com serviços ou IPs bem conhecidos para reduzir suspeita e permitir persistência..
+
+AVALIAÇÃO:
+[01] - Nome Dispositivo: {data:device_name}
+[02] - Endereço Origem: {data:src_ip}
+[03] - Endereço Destino: {data:dst_ip}
+[04] - Porta de Destino dos Dados: {data:dst_port}
+[05] - Aplicação: {data:application}
+[06] - Categoria da Aplicação: {data:application_category}
+[07] - Características da Aplicação: {data:application_characteristics}
+[08] - Tecnologia da Aplicação: {data:application_technology}
+[09] - Verificação: {data:category}
+[10] - Protocolo de Rede: {data:ip_protocol}
+[11] - Ip do NAT destino: {data:nat_destination_ip}
+[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}
+[13] - Ip do NAT Origem: {data:nat_source_ip}
+[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}
+[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}
+[16] - Nome da Máquina Virtual: {data:virtual_system_name}
+[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}
+[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}
+[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}
+[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}
+[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}
+[22] - Tipo de IP Origem: {abuseipdb:usageType}
+[23] - ISP de Origem: {abuseipdb:isp}
+[24] - Código de País do IP de Origem: {abuseipdb:countryCode}
+
+MITIGAÇÃO:
+01. Configurar políticas no firewall ou proxy para restringir o uso de aplicativos  em redes corporativas. Caso seja necessário, criar exceções apenas para usuários autorizados.
+02. Aplicar ferramentas de DLP(Data Loss Prevention) para monitorar e bloquear upload de arquivos sensíveis em canais não corporativos. Essa camada evita exfiltração acidental ou intencional de dados.
+03. Isolar redes de usuários finais de redes administrativas, impedindo que dispositivos com menor nível de segurança tenham acesso direto à internet sem inspeção profunda (SSL inspection).
+
+CONTENÇÃO:
+01. Criar uma regra de bloqueio ou inspeção para a aplicação, reduzindo o risco de transferência contínua até a investigação ser concluída.
+02. Avaliar se o dispositivo está comprometido (ex.: malware usando o canal para exfiltração). Caso haja suspeita, isolar da rede e realizar varredura antimalware e forense.
+03. Verificar se há outros hosts ou usuários realizando tráfego similar, bem como possíveis transferências em massa ou conexões frequentes com o mesmo IP externo.
+
+CONCLUSÃO:
+O log indica que houve transferência de arquivos por meio de um aplicativo conhecido, identificado como tráfego legítimo e amplamente utilizado, mas com características de vulnerabilidade conhecida e uso pervasivo. Apesar de autorizado pela política de firewall, esse tipo de tráfego apresenta risco, pois pode ser explorado para exfiltração de dados ou execução de ações maliciosas disfarçadas como comunicação normal.
+
+(JSON) : "100109":"<p align=justify><b>IDENTIFICAÇÃO:</b>\nUma conexão, apesar de criptografada, pode ser utilizada para transferir arquivos maliciosos ou criar túneis para ocultar atividades maliciosas. Este playbook aborda a detecção e resposta a uma conexão com essas características, detectada pelo firewall e classificada.\n\n<b>ETAPAS DO ATAQUE:</b>\n01. O atacante pode usar o tráfego HTTPS  para transferir dados sigilosos da rede interna, aproveitando o anonimato do canal cifrado.\n02. O atacante pode abusar de explorações conhecidas em bibliotecas da aplicação em questão ou APIs associadas podem permitir execução remota de código ou injeção de scripts.\n03. Caso o atacante tenha acesso inicial ao host interno, pode usar esse tipo de tráfego permitido para enviar payloads ou comandos, mantendo persistência sem gerar alertas diretos.\n04. O atacante pode fragmentar ou escalonar transferências (pequenos envios frequentes) para evitar alertas por picos de banda e comunicar-se com serviços ou IPs bem conhecidos para reduzir suspeita e permitir persistência..\n\n<b>AVALIAÇÃO:</b>\n[01] - Nome Dispositivo: {data:device_name}\n[02] - Endereço Origem: {data:src_ip}\n[03] - Endereço Destino: {data:dst_ip}\n[04] - Porta de Destino dos Dados: {data:dst_port}\n[05] - Aplicação: {data:application}\n[06] - Categoria da Aplicação: {data:application_category}\n[07] - Características da Aplicação: {data:application_characteristics}\n[08] - Tecnologia da Aplicação: {data:application_technology}\n[09] - Verificação: {data:category}\n[10] - Protocolo de Rede: {data:ip_protocol}\n[11] - Ip do NAT destino: {data:nat_destination_ip}\n[12] - Porta de Destino do NAT dos Dados: {data:nat_destination_port}\n[13] - Ip do NAT Origem: {data:nat_source_ip}\n[14] - Porta de Origem do NAT dos Dados: {data:nat_source_port}\n[15] - Dados da Aplicação Encapsulada: {data:tunneled_application}\n[16] - Nome da Máquina Virtual: {data:virtual_system_name}\n[17] - Má Reputação de IP Origem (Indicador): {abuseipdb:found}\n[18] - Má Reputação de IP Origem (Nível): {abuseipdb:abuseConfidenceScore}\n[19] - Má Reputação de IP Origem (Domínio): {abuseipdb:domain}\n[20] - Má Reputação de IP Origem (Ocorrências): {abuseipdb:totalReports}\n[21] - Má Reputação de IP Origem (Última ocorrência): {abuseipdb:lastReportedAt}\n[22] - Tipo de IP Origem: {abuseipdb:usageType}\n[23] - ISP de Origem: {abuseipdb:isp}\n[24] - Código de País do IP de Origem: {abuseipdb:countryCode}\n\n<b>MITIGAÇÃO:</b>\n01. Configurar políticas no firewall ou proxy para restringir o uso de aplicativos  em redes corporativas. Caso seja necessário, criar exceções apenas para usuários autorizados.\n02. Aplicar ferramentas de DLP(Data Loss Prevention) para monitorar e bloquear upload de arquivos sensíveis em canais não corporativos. Essa camada evita exfiltração acidental ou intencional de dados.\n03. Isolar redes de usuários finais de redes administrativas, impedindo que dispositivos com menor nível de segurança tenham acesso direto à internet sem inspeção profunda (SSL inspection).\n\n<b>CONTENÇÃO:</b>\n01. Criar uma regra de bloqueio ou inspeção para a aplicação, reduzindo o risco de transferência contínua até a investigação ser concluída.\n02. Avaliar se o dispositivo está comprometido (ex.: malware usando o canal para exfiltração). Caso haja suspeita, isolar da rede e realizar varredura antimalware e forense.\n03. Verificar se há outros hosts ou usuários realizando tráfego similar, bem como possíveis transferências em massa ou conexões frequentes com o mesmo IP externo.\n\n<b>CONCLUSÃO:</b> O log indica que houve transferência de arquivos por meio de um aplicativo conhecido, identificado como tráfego legítimo e amplamente utilizado, mas com características de vulnerabilidade conhecida e uso pervasivo. Apesar de autorizado pela política de firewall, esse tipo de tráfego apresenta risco, pois pode ser explorado para exfiltração de dados ou execução de ações maliciosas disfarçadas como comunicação normal.</p>",
+
+==================================================
+Playbook gerado em: 02/11/2025 às 10:48:23
